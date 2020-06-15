@@ -1,0 +1,175 @@
+body{
+  font-family: 'Roboto', sans-serif;
+  background-color:#303133;
+  height: 100vh;
+}
+
+canvas{
+  background-color:#2b2c2e;
+  border-radius: 40px;
+  padding: 30px;
+  margin: 0 auto;
+
+}
+
+.btn-custom {
+  background-color: #303133;
+  margin-right: 15px;
+  border-bottom: 2px solid #DC3D45;
+}
+
+.btn-custom:hover {
+  background-color: #2B2C2E;
+}
+
+.btn-custom i{
+  margin: 0 5px;
+}
+
+.canvas canvas{
+  width: 100%;
+}
+
+.table-dark td {
+  text-align: center;
+}
+
+.bg-light {
+  background-color: #222222 !important;
+  border-bottom: 2px solid #2B2C2E;
+}
+
+.bg-light a {
+  color: rgb(233, 233, 233) !important;
+}
+
+h1 {
+  font-size: 45px;
+  color: rgb(255, 255, 255)
+}
+
+h2, h3 {
+  font-size: 17px;
+  margin: 3px 0 3px;
+  color:rgb(155, 226, 208)
+
+}
+
+.flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.corona-picture {
+  width: 50px;
+  margin-left: 15px;
+}
+
+.addCountry{
+  margin: auto;
+  padding: 0 10px;
+}
+
+.select-container {
+  display: flex;
+  justify-content: center;
+}
+
+.countries {
+  width: 400px;
+  margin: auto;
+  box-shadow: 5px 5px 10px rgba(0,0,0,0.3);
+}
+
+.default {
+  color: rgb(194, 194, 194);
+}
+
+.world-content{
+  width: 100%;
+  min-height: 300px;
+  border-radius: 20px;
+  background-color: #2B2C2E;
+  color:white;
+  padding:0 30px;
+  margin: 5px;
+  margin-top: 25px;
+}
+
+
+.text-orange {
+  color: darkorange;
+}
+
+.text-yellow {
+  color: darkgoldenrod
+}
+
+.text-purple {
+  color: darkorchid
+}
+
+.infos {
+  margin-top: 10px;
+  display:flex;
+}
+
+.world-content h1 {
+  text-align: center;
+}
+
+.content {
+  padding:25px;
+  margin-left: 35px;
+}
+
+.content span {
+  font-size: 30px;
+  padding: 20px 0;
+}
+
+.content-display {
+  display:flex;
+  width: 100%;
+  height: 300px;
+  text-align: center;
+  border: 1px solid;
+  border-radius: 20px;
+  background-color: rgb(29, 165, 132);
+  color:white;
+  padding: 30px;
+  margin: 5px;
+  margin-top: 25px;
+  box-shadow: 5px 5px 10px rgba(0,0,0,0.3);
+}
+
+tr {
+  height: 17px !important;
+}
+
+.lixeira {
+  width: 30px;
+  position: relative;
+  margin-right: 50px;
+}
+
+.lixeira:hover {
+  cursor: pointer;
+  width: 27px;
+}
+
+.generate-graphic {
+  width: 40px;
+  position: relative;
+  margin-right: 50px;
+}
+
+.generate-graphic:hover {
+  cursor: pointer;
+  width: 38px;
+}
+
+tr:hover, td:hover {
+  cursor: pointer;
+}
