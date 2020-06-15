@@ -2,7 +2,7 @@ body{
   font-family: 'Roboto', sans-serif;
   background-color:#303133;
   height: 100vh;
-  width: 1279px;
+  min-width: 1279px;
 }
 
 canvas{
@@ -10,7 +10,7 @@ canvas{
   border-radius: 40px;
   padding: 30px;
   margin: 0 auto;
-  width: 1279px !important;
+  min-width: 1279px !important;
 }
 
 .btn-custom {
