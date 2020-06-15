@@ -4,7 +4,6 @@ const option = {
   cache: "default",
 };
 function callFetch(country) {
-  console.log(country)
   fetch(
     `https://api.covid19api.com/total/dayone/country/${country}`,
     option
@@ -188,6 +187,16 @@ const noData = [
         'mayotte',
         'turks-and-caicos'
       ]
+      let nameChange = [
+        'car', 'central-african-republic',
+        'congo','democratic-republic-of-the-congo',
+        'drc','democratic-republic-of-the-congo',
+        'iran, Islamic Republic of','iran',
+        'timor-leste','east-timor',
+        'usa', 'united-states'
+      ]
+
+
 let noDeathCountries = [];
 function graphicUpdate() {
   let trInfo = document.querySelectorAll("tr");
@@ -198,15 +207,7 @@ function graphicUpdate() {
       arr.push(trInfo[i].classList.item(1).toLowerCase());
     }
   }
-
-  let nameChange = [
-    'car', 'central-african-republic',
-    'congo','democratic-republic-of-the-congo',
-    'drc','democratic-republic-of-the-congo',
-    'iran, Islamic Republic of','iran',
-    'timor-leste','east-timor',
-    'usa', 'united-states'
-  ]
+  
 
   for (let i = 0; i < arr.length; i += 1) {
     for ( let j = 0 ; j < nameChange.length ; j += 2) {
@@ -243,9 +244,19 @@ function removingFromGraph() {
   }
   let toRemoveDatasetIndex;
 
+  
+    for ( let j = 0 ; j < nameChange.length ; j += 2) {
+      if (countryToBeRemoved === 'usa') { 
+        countryToBeRemoved = "united states of america";
+      }
+    }
+  
+
+    console.log(countryToBeRemoved);
+
   if (countryToBeRemoved !== "" && countryToBeRemoved !== "world") {
     let arrayToSearch = myChart.data.datasets;
-
+    console.log(arrayToSearch)
     for (i = 0; i < arrayToSearch.length; i += 1) {
       if (arrayToSearch[i].label.toLowerCase() === countryToBeRemoved) {
         toRemoveDatasetIndex = i;
