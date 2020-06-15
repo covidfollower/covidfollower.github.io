@@ -10,7 +10,6 @@ canvas{
   border-radius: 40px;
   padding: 30px;
   margin: 0 auto;
-  min-width: 95% !important;
 }
 
 .btn-custom {
