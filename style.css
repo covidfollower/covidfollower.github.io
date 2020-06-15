@@ -2,7 +2,7 @@ body{
   font-family: 'Roboto', sans-serif;
   background-color:#303133;
   height: 100vh;
-  min-width: 1249px;
+  width: 1279px;
 }
 
 canvas{
@@ -10,7 +10,7 @@ canvas{
   border-radius: 40px;
   padding: 30px;
   margin: 0 auto;
-
+  width: 1279px !important;
 }
 
 .btn-custom {
@@ -25,10 +25,6 @@ canvas{
 
 .btn-custom i{
   margin: 0 5px;
-}
-
-.canvas canvas{
-  width: 100%;
 }
 
 .table-dark td {
