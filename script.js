@@ -69,7 +69,7 @@ function mainConstruction(data) {
       alert('Anderson, precisa personalizar os nomes que estão diferente, com')
     }
     }
-    customOneOpt.value = "default";
+    //customOneOpt.value = "default";
   });
 
   let posicao = 1;
@@ -179,13 +179,13 @@ function selectToDelete(event) {
 
   for (i = 0; i < tableDelete.length; i += 1) {
     if (tableDelete[i].classList.contains(compare)) {
-      if (tableDelete[i].classList.contains("bg-warning")) {
-        tableDelete[i].classList.remove("bg-warning");
+      if (tableDelete[i].classList.contains("bg-danger")) {
+        tableDelete[i].classList.remove("bg-danger");
       } else {
         for (let j = 0; j < tableDelete.length; j += 1) {
-          tableDelete[j].classList.remove("bg-warning");
+          tableDelete[j].classList.remove("bg-danger");
         }
-        tableDelete[i].classList.add("bg-warning");
+        tableDelete[i].classList.add("bg-danger");
         deletePosition = i;
       }
     }
