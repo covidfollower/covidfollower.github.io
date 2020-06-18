@@ -206,3 +206,5 @@ deleteButton.addEventListener("click", function () {
 });
 
 let numberCorrection = document.getElementsByClassName("numero");
+
+

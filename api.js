@@ -3,6 +3,7 @@ const option = {
   mode: "cors",
   cache: "default",
 };
+
 function callFetch(country) {
   fetch(
     `https://api.covid19api.com/total/dayone/country/${country}`,
@@ -19,31 +20,29 @@ function callFetch(country) {
 
 // });
 
+// CONSTRUTOR DO EIXO X 
 let label = [];
 let contador = 0;
-
 for (let index = 0; index < 150; index += 1) {
   contador += 1;
   label.push(contador);
-}
+};
+
+//CONSTRUTOR DO GRAFICO
 let dataSetsInfo = {
   datasets: [],
 };
 function apiConstruction(data) {
-  let dayDeaths = [];
 
-  for (let index = 0; index < data.length; index += 1) {
-    dayDeaths.push(data[index].Deaths);
-  }
-
+  //GERADOR DE CORES ALEAT?RIAS
   function randomColor() {
     let r = Math.floor(Math.random() * 205 + 50);
     let g = Math.floor(Math.random() * 205 + 50);
     let b = Math.floor(Math.random() * 205 + 50);
-
     return `rgb(${r}, ${g}, ${b})`;
   }
   
+  //CONSTRUTOR DA DATA DO GRAFICO
   function createChartData(data) {
     let newLineColor = randomColor();
     let newData = {
@@ -55,11 +54,12 @@ function apiConstruction(data) {
       label: data[1].Country,
       fill: false,
     };
+
+    //DADO A SER IMPLEMENTADO
     for (let index = 0; index < data.length; index += 1) {
       newData.data.push(data[index].Deaths);
     }
 
-    let oldData = myChart.data.datasets[0];
     dataSetsInfo.datasets.push(newData);
     myChart.data.dataset = dataSetsInfo.dataset;
   }
@@ -72,6 +72,8 @@ function apiConstruction(data) {
   }
 }
 
+
+//ESTRUTURA PADR?O DO GRAFICO
 let ctx = document.getElementById("myChart2").getContext("2d");
 let myChart = new Chart(ctx, {
   type: "line",
@@ -140,11 +142,16 @@ let myChart = new Chart(ctx, {
   },
 });
 
+
+//ESTRUTURAS PADR?ES DO GR?FICO INICIAL
 callFetch("brazil");
 callFetch("france");
 callFetch("united-states");
 callFetch("italy");
 callFetch("spain");
+
+
+//ARRAYS QUE RECEBEM NOVOS INTEGRANTES DO GRAFICO E TAMB?M ARMAZENAM OS QUE J? EST?O L? CONTIDOS
 let arr = [];
 let arrCriado = [
   "brazil",
@@ -158,6 +165,8 @@ let arrCriado = [
 /* let generateGraphic = document.getElementsByClassName("countries")[0];
 generateGraphic.addEventListener("change", graphicUpdate);
 */
+
+//PA?SES DO SELECT QUE N?O POSSUEM DADO POR DIA
 const noData = [
         'anguilla', 
         'aruba',
@@ -187,6 +196,9 @@ const noData = [
         'mayotte',
         'turks-and-caicos'
       ]
+
+//PAISES CUJO NOME PRECISA DE TRATAMENTO ANTES DE SER CHAMADO NO FETCH
+
       let nameChange = [
         'car', 'central-african-republic',
         'congo','democratic-republic-of-the-congo',
@@ -196,8 +208,11 @@ const noData = [
         'usa', 'united-states'
       ]
 
-
+//ARRAY QUE CONTEM PA?SES COM ZERO DE MORTE
 let noDeathCountries = [];
+
+
+//FUNCAO QUE ATUALIZA O GRAFICO DE ACORDO COM O OPT SELECIONADO
 function graphicUpdate() {
   let trInfo = document.querySelectorAll("tr");
   for (i = 1; i < trInfo.length; i += 1) {
@@ -228,12 +243,13 @@ function graphicUpdate() {
 }
 
 
+//REFERENCIAS DOS BOTOES DISPONIVEIS PARA ATUALIZAR E MODIFICAR O GR?FICO
 let chartChange = document.getElementById("myChart2");
-
 let removement = document.getElementsByClassName("remove")[0];
-
 removement.addEventListener("click", removingFromGraph);
 
+
+//FUNCAO QUE REMOVE O PAIS SELECIONADO NA TABELA DO GRAFICO
 function removingFromGraph() {
   let trSelected = document.getElementsByTagName("tr");
   let countryToBeRemoved = "";
@@ -272,10 +288,13 @@ function removingFromGraph() {
   }
 }
 
+// FUNCAO QUE RETIRA O ARRAY A SER REMOVIDO DE DENTRO DO ARRAY PRINCIPAL
 function removeData(chart, removedDatasetIndex) {
   chart.data.datasets.splice(removedDatasetIndex, 1);
   chart.update();
 }
+
+
 
 function dataNumberValidity() {
   let trInfo = document.querySelectorAll("tr");
