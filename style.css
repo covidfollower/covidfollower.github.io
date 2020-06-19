@@ -96,6 +96,7 @@ tr:hover {
   canvas {
     max-width: 100%;
     min-height: 340px;
+    padding: 5px;
   }
 
   .canvasChart {
