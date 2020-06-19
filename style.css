@@ -104,7 +104,8 @@ tr:hover {
   }
 
 
-  .data2, .data4, .data8, .data9{
+
+  .data2, .data4, .data5, .data6, .data7, .data8, .data9, .data11{
     display:none;
   }
 }
