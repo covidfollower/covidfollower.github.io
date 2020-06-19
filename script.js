@@ -109,9 +109,9 @@ function mainConstruction(data) {
     let todayDeaths = data[tableIndex][thKeys[4]];
     let comparsionCase = (todayCases / totalCase) * 100;
     let comparsionDeaths = (todayDeaths / totalDeaths) * 100;
+    
     for (i = 0; i < 12; i += 1) {
       let newData = document.createElement("td");
-      let bgColor = randomColor();
       newRow.appendChild(newData);
       if (data[tableIndex][thKeys[i]] != null) {
         newData.innerHTML = data[tableIndex][thKeys[i]].toLocaleString("pt-BR");
@@ -120,9 +120,12 @@ function mainConstruction(data) {
         newData.classList.add('data'+i)
       }
       if (newData.innerHTML == '') {
-          newData.innerHTML = 'N/D';
+          newData.innerHTML = 0;
+          newData.className = "text-center";
+          newData.classList.add(posicao)
+          newData.classList.add('data'+i)
         }
-      bgColorArray.push(bgColor);
+      
       if (thKeys[i] === "todayCases") {
         if (data[tableIndex][thKeys[i]] != 0) {
           newData.innerHTML = `${data[tableIndex][thKeys[i]].toLocaleString(
@@ -154,13 +157,11 @@ function mainConstruction(data) {
     return "rgba(" + r + ", " + g + ", " + b + ", " + "0.7" + ")";
   }
 
-  let deathInfo = [];
-  let bgColorArray = [];
 
   tableConstructor(data, "World");
   tableConstructor(data, "USA");
   tableConstructor(data, "Brazil");
-  // tableConstructor(data, "Spain");
+  tableConstructor(data, "Spain");
   tableConstructor(data, "Italy");
   tableConstructor(data, "France");
   optionConstruction(data);

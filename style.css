@@ -2,8 +2,6 @@ body{
   font-family: 'Roboto', sans-serif;
   background-color:#303133;
   height: 100vh;
-  min-width: 1249px;
-  width: 100%;
 }
 
 
@@ -88,7 +86,7 @@ tr:hover {
   cursor: pointer;
 }
 
-@media screen and (max-width: 860px) {
+@media screen and (max-width: 1100px) {
   .canvas {
     flex-direction: column;
     flex-wrap: wrap;
@@ -108,4 +106,18 @@ tr:hover {
   .data2, .data4, .data5, .data6, .data7, .data8, .data9, .data11{
     display:none;
   }
+}
+
+@media screen and (max-width:770px) {
+  .selectDiv {
+    width: 100%;
+  }
+  .corona-picture {
+    width: 70px;
+  }
+
+  .nav-mobile {
+    justify-content: center!important;
+  }
+ 
 }
