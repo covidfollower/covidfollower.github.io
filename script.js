@@ -160,7 +160,7 @@ function mainConstruction(data) {
   tableConstructor(data, "World");
   tableConstructor(data, "USA");
   tableConstructor(data, "Brazil");
-  // tableConstructor(data, "Spain");
+  tableConstructor(data, "Spain");
   tableConstructor(data, "Italy");
   tableConstructor(data, "France");
   optionConstruction(data);
