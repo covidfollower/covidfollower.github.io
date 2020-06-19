@@ -17,6 +17,7 @@ fetch('https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/o
 let InitiateChartCountries = ['Brazil', 'Spain', 'Italy', 'France', 'United States'];
 let alreadyCreated = [];
 let countryToBeCreated = ""
+
 //CHARTS TOTAL ACUMULATED DEATHS PER DAY
 let dataSetsInfo1 = {
   datasets: [],
@@ -39,6 +40,10 @@ function testeConstruction (data) {
   
   InitiateChartCountries.forEach( element => {
 
+    if (element === 'USA') { 
+      element = "United States";
+    }
+
   countryToBeCreated = element  
   let indexArrayFiltered = arr.filter( id => (id[0].location === countryToBeCreated))
   if(alreadyCreated.includes(countryToBeCreated) === false) {
@@ -57,7 +62,7 @@ function testeConstruction (data) {
         data: [],
         backgroundColor: color,
         borderColor: color,
-        borderWidth: 3,
+        borderWidth: 2,
         pointRadius: 0,
         label: data[0][0].location,
         fill: false,
@@ -78,7 +83,7 @@ function testeConstruction (data) {
         data: [],
         backgroundColor: color,
         borderColor: color,
-        borderWidth: 3,
+        borderWidth: 2,
         pointRadius: 0,
         label: data[0][0].location,
         fill: false,
@@ -99,7 +104,7 @@ function testeConstruction (data) {
         data: [],
         backgroundColor: color,
         borderColor: color,
-        borderWidth: 3,
+        borderWidth: 2,
         pointRadius: 0,
         label: data[0][0].location,
         fill: false,
@@ -120,7 +125,7 @@ function testeConstruction (data) {
         data: [],
         backgroundColor: color,
         borderColor: color,
-        borderWidth: 3,
+        borderWidth: 2,
         pointRadius: 0,
         label: data[0][0].location,
         fill: false,
@@ -187,9 +192,7 @@ let myChart1 = new Chart(ctx1, {
             fontSize: 15,
             fontColor: "#eee",
             min: 0,
-            suggestedMax: 30000,
-            stepSize: 15000,
-            maxTicksLimit: 30,
+            maxTicksLimit: 10,
           },
         },
       ],
@@ -257,9 +260,7 @@ let myChart2 = new Chart(ctx2, {
             fontSize: 15,
             fontColor: "#eee",
             min: 0,
-            suggestedMax: 1000,
-            stepSize: 800,
-            maxTicksLimit: 30,
+            maxTicksLimit: 10,
           },
         },
       ],
@@ -327,9 +328,8 @@ let myChart3 = new Chart(ctx3, {
             fontSize: 15,
             fontColor: "#eee",
             min: 0,
-            suggestedMax: 50,
             stepSize: 20,
-            maxTicksLimit: 30,
+            maxTicksLimit: 10,
           },
         },
       ],
@@ -360,7 +360,7 @@ let myChart3 = new Chart(ctx3, {
     },
     title: {
       display: true,
-      text: "CASES PER MILLION (estimated)",
+      text: "DAILY CASES PER MILLION (estimated)",
       fontSize: 18,
       fontColor: "#eee",
     },
@@ -397,9 +397,8 @@ let myChart4 = new Chart(ctx4, {
             fontSize: 15,
             fontColor: "#eee",
             min: 0,
-            suggestedMax: 30,
             stepSize: 3,
-            maxTicksLimit: 30,
+            maxTicksLimit: 10,
           },
         },
       ],
@@ -430,10 +429,77 @@ let myChart4 = new Chart(ctx4, {
     },
     title: {
       display: true,
-      text: "DEATHS PER MILLION (estimated)",
+      text: "DAILY DEATHS PER MILLION (estimated)",
       fontSize: 18,
       fontColor: "#eee",
     },
   },
 });
+
+//INICIO DOS PAISES PADROES
 newCallFetch()
+
+//REMOVING FROM GRAPH
+function removingFromGraph() {
+  let trSelected = document.querySelectorAll("tr");
+  let countryToBeRemoved = "";
+  const filtered = [...trSelected].filter( selected => selected.classList.contains('bg-danger') === true);
+  countryToBeRemoved = filtered[0].classList.item(1)
+  let toRemoveDatasetIndex;
+
+
+  if (countryToBeRemoved === 'USA') { 
+    countryToBeRemoved = "United States";
+  }
+  
+
+
+  let arraysToSearch = [myChart1.data.datasets, myChart2.data.datasets, myChart3.data.datasets, myChart4.data.datasets]
+  console.log(arraysToSearch)
+  
+  const chartByOne = arraysToSearch.forEach( chart => {
+    const countryByCountry = chart.forEach( chartCountries => {
+      if (chartCountries.label === countryToBeRemoved){
+      
+        chart.splice(chart.indexOf(chartCountries),1)
+        if( alreadyCreated.indexOf(chartCountries.label) !== -1)
+        alreadyCreated.splice(alreadyCreated.indexOf(chartCountries.label),1)
+        if( InitiateChartCountries.indexOf(chartCountries.label) !== -1)
+        InitiateChartCountries.splice(InitiateChartCountries.indexOf(chartCountries.label),1)
+      }
+     
+
+    });
+  });
+  myChart1.update()
+  myChart2.update()
+  myChart3.update()
+  myChart4.update()
+      
+    
+  
+//  if (toRemoveDatasetIndex !== undefined) {
+  //  removeData(myChart, toRemoveDatasetIndex);
+    //toRemoveDatasetIndex = undefined;
+    //removingFromGraph();
+ // }
+}
+const removeBut = document.getElementsByClassName('remove')[0]
+removeBut.addEventListener('click', removingFromGraph)
+
+
+let noDeathCountries = [];
+function dataNumberValidity() {
+  let trInfo = document.querySelectorAll("tr");
+  for (i = 1; i < trInfo.length; i += 1) {
+    let rowClassPIcker = trInfo[i].classList.item(0);
+    let newNdFinder = document.getElementsByClassName(rowClassPIcker);
+    if (newNdFinder[4].innerHTML == 'N/D') {
+      if (trInfo.classList === undefined) {
+        noDeathCountries.push(newNdFinder[1].innerHTML);
+        break;
+      }
+    }
+  }
+  return noDeathCountries;
+}

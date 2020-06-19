@@ -6,6 +6,7 @@ body{
   width: 100%;
 }
 
+
 .canvas {
   display: flex;
   flex-wrap: wrap;
@@ -65,7 +66,7 @@ h2, h3 {
 
 
 .corona-picture {
-  width: 50px;
+  min-width: 50px;
   margin-left: 15px;
 }
 
@@ -83,3 +84,27 @@ h2, h3 {
   /* display:flex; */
 }
 
+tr:hover {
+  cursor: pointer;
+}
+
+@media screen and (max-width: 860px) {
+  .canvas {
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  canvas {
+    max-width: 100%;
+  }
+
+  .canvasChart {
+    margin: 10px 0;
+  }
+
+
+  .data2, .data4, .data8, .data9{
+    display:none;
+  }
+}

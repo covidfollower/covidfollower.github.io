@@ -62,13 +62,8 @@ function mainConstruction(data) {
     index = finder(data, customOneOpt.value);
     if (customOneOpt.value != "default") {
       tableConstructor(data, customOneOpt.value);
-      let compare = dataNumberValidity();
-    if(compare.includes(customOneOpt.value) === false ) {  
-      graphicUpdate();
-    } else {
-      alert('Anderson, precisa personalizar os nomes que estão diferente, com')
     }
-    }
+    
     //customOneOpt.value = "default";
   });
 
@@ -122,6 +117,7 @@ function mainConstruction(data) {
         newData.innerHTML = data[tableIndex][thKeys[i]].toLocaleString("pt-BR");
         newData.className = "text-center";
         newData.classList.add(posicao);
+        newData.classList.add('data'+i)
       }
       if (newData.innerHTML == '') {
           newData.innerHTML = 'N/D';
@@ -164,7 +160,7 @@ function mainConstruction(data) {
   tableConstructor(data, "World");
   tableConstructor(data, "USA");
   tableConstructor(data, "Brazil");
-  tableConstructor(data, "Spain");
+  // tableConstructor(data, "Spain");
   tableConstructor(data, "Italy");
   tableConstructor(data, "France");
   optionConstruction(data);
@@ -197,7 +193,7 @@ deleteButton.addEventListener("click", function () {
   deleteAll();
   function deleteAll() {
     for (i = 0; i < tableDelete.length; i += 1) {
-      if (tableDelete[i].classList.contains("bg-warning")) {
+      if (tableDelete[i].classList.contains("bg-danger")) {
         deletedRow.removeChild(tableDelete[i]);
         deleteAll();
       }
