@@ -64,8 +64,8 @@ h2, h3 {
 
 
 .corona-picture {
-  max-width: 70px;
-  max-height: 70px;
+  max-width: 50px;
+  max-height: 50px;
   margin-left: 15px;
 }
 
@@ -125,7 +125,7 @@ tr:hover {
   }
   .corona-picture {
     max-width: 70px;
-    max-height: 70px;
+    max-height: 50px;
   }
 
   .nav-mobile {
