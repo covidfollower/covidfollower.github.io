@@ -1,7 +1,6 @@
 body{
   font-family: 'Roboto', sans-serif;
   background-color:#303133;
-  height: 100vh;
   min-width: 600px;
 }
 
@@ -65,7 +64,8 @@ h2, h3 {
 
 
 .corona-picture {
-  min-width: 50px;
+  max-width: 70px;
+  max-height: 70px;
   margin-left: 15px;
 }
 
@@ -119,27 +119,25 @@ tr:hover {
   }
 }
 
-@media screen and (max-width:600px) {
+@media screen and (max-width:801px) {
   .selectDiv {
     width: 80%;
   }
   .corona-picture {
-    width: 70px;
+    max-width: 70px;
+    max-height: 70px;
   }
 
   .nav-mobile {
     justify-content: center!important;
   }
- /* 
+ 
   .data2, .data4, .data5, .data6, .data8, .data9, .data11{
     display:none;
   }
 
-  .data0, .data1, .data3, .data5, .data7, .data10{
-    font-size: 8px;
-  }
 
   .data11 {
     color: green !important;
-  } */
+  }
 } 
