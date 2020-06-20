@@ -100,6 +100,14 @@ tr:hover {
     padding: 5px;
   }
 
+  .selectDiv {
+    width: 80%;
+  }
+
+  .nav-mobile {
+    justify-content: center!important;
+  }
+
   .canvasChart {
     margin: 10px 0;
   }
@@ -111,9 +119,9 @@ tr:hover {
   }
 }
 
-/* @media screen and (max-width:600px) {
+@media screen and (max-width:600px) {
   .selectDiv {
-    width: 100%;
+    width: 80%;
   }
   .corona-picture {
     width: 70px;
@@ -122,7 +130,7 @@ tr:hover {
   .nav-mobile {
     justify-content: center!important;
   }
- 
+ /* 
   .data2, .data4, .data5, .data6, .data8, .data9, .data11{
     display:none;
   }
@@ -133,5 +141,5 @@ tr:hover {
 
   .data11 {
     color: green !important;
-  }
-}  */
+  } */
+} 
