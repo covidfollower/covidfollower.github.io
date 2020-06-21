@@ -37,11 +37,14 @@ let dataSetsInfo4 = {
 
 function testeConstruction (data) {
   const arr = Object.values(data)
-  
+  console.log(arr)
   InitiateChartCountries.forEach( element => {
 
     if (element === 'USA') { 
       element = "United States";
+    }
+    if (element === 'UK') { 
+      element = "United Kingdom";
     }
 
   countryToBeCreated = element  
@@ -70,7 +73,7 @@ function testeConstruction (data) {
   
       //DADO A SER IMPLEMENTADO
       for (let index = 0; index < data[0].length; index += 1) {
-        newData1.data.push(data[0][index].total_deaths);
+        newData1.data.push(data[0][index].total_cases);
       }
       
       dataSetsInfo1.datasets.push(newData1);
@@ -91,7 +94,7 @@ function testeConstruction (data) {
   
       //DADO A SER IMPLEMENTADO
       for (let index = 0; index < data[0].length; index += 1) {
-        newData2.data.push(data[0][index].new_deaths);
+        newData2.data.push(Math.round(data[0][index].total_cases_per_million));
       }
       
       dataSetsInfo2.datasets.push(newData2);
@@ -112,7 +115,7 @@ function testeConstruction (data) {
   
       //DADO A SER IMPLEMENTADO
       for (let index = 0; index < data[0].length; index += 1) {
-        newData3.data.push(Math.round(data[0][index].new_cases_per_million));
+        newData3.data.push(Math.round(data[0][index].total_deaths));
       }
       
       dataSetsInfo3.datasets.push(newData3);
@@ -133,7 +136,7 @@ function testeConstruction (data) {
   
       //DADO A SER IMPLEMENTADO
       for (let index = 0; index < data[0].length; index += 1) {
-        newData4.data.push(Math.round(data[0][index].new_deaths_per_million));
+        newData4.data.push(Math.round(data[0][index].total_deaths_per_million));
       }
       
       dataSetsInfo4.datasets.push(newData4);
@@ -184,8 +187,8 @@ let myChart1 = new Chart(ctx1, {
           type: "linear",
           scaleLabel: {
             display: true,
-            labelString: "Total Deaths",
-            fontSize: 18,
+            labelString: "Total Cases",
+            fontSize: 15,
           },
           ticks: {
             display: true,
@@ -201,7 +204,7 @@ let myChart1 = new Chart(ctx1, {
           scaleLabel: {
             display: true,
             labelString: "Days from day one",
-            fontSize: 18,
+            fontSize: 15,
           },
           ticks: {
             display: true,
@@ -223,9 +226,9 @@ let myChart1 = new Chart(ctx1, {
     },
     title: {
       display: true,
-      text: "TOTAL DEATHS FROM DAY ONE",
+      text: "TOTAL CASES",
       fontSize: 18,
-      fontColor: "#eee",
+      fontColor: "rgb(23, 162, 184)",
     },
   },
 });
@@ -252,8 +255,8 @@ let myChart2 = new Chart(ctx2, {
           type: "linear",
           scaleLabel: {
             display: true,
-            labelString: "Total Deaths",
-            fontSize: 18,
+            labelString: "Total Cases",
+            fontSize: 15,
           },
           ticks: {
             display: true,
@@ -269,7 +272,7 @@ let myChart2 = new Chart(ctx2, {
           scaleLabel: {
             display: true,
             labelString: "Days from day one",
-            fontSize: 18,
+            fontSize: 15,
           },
           ticks: {
             display: true,
@@ -291,9 +294,9 @@ let myChart2 = new Chart(ctx2, {
     },
     title: {
       display: true,
-      text: "DEATHS PER DAY",
+      text: "TOTAL CASES PER MILLION (estimated)",
       fontSize: 18,
-      fontColor: "#eee",
+      fontColor: "rgb(23, 162, 184)",
     },
   },
 }); 
@@ -321,7 +324,7 @@ let myChart3 = new Chart(ctx3, {
           scaleLabel: {
             display: true,
             labelString: "Total Deaths",
-            fontSize: 18,
+            fontSize: 15,
           },
           ticks: {
             display: true,
@@ -338,7 +341,7 @@ let myChart3 = new Chart(ctx3, {
           scaleLabel: {
             display: true,
             labelString: "Days from day one",
-            fontSize: 18,
+            fontSize: 15,
           },
           ticks: {
             display: true,
@@ -360,9 +363,9 @@ let myChart3 = new Chart(ctx3, {
     },
     title: {
       display: true,
-      text: "DAILY CASES PER MILLION (estimated)",
+      text: "TOTAL DEATHS",
       fontSize: 18,
-      fontColor: "#eee",
+      fontColor: "rgb(220, 53, 69)",
     },
   },
 });
@@ -390,7 +393,7 @@ let myChart4 = new Chart(ctx4, {
           scaleLabel: {
             display: true,
             labelString: "Deaths/million",
-            fontSize: 18,
+            fontSize: 15,
           },
           ticks: {
             display: true,
@@ -407,7 +410,7 @@ let myChart4 = new Chart(ctx4, {
           scaleLabel: {
             display: true,
             labelString: "Days from day one",
-            fontSize: 18,
+            fontSize: 15,
           },
           ticks: {
             display: true,
@@ -429,9 +432,9 @@ let myChart4 = new Chart(ctx4, {
     },
     title: {
       display: true,
-      text: "DAILY DEATHS PER MILLION (estimated)",
+      text: "TOTAL DEATHS PER MILLION (estimated)",
       fontSize: 18,
-      fontColor: "#eee",
+      fontColor: "rgb(220, 53, 69)",
     },
   },
 });
