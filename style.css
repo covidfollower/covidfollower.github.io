@@ -95,8 +95,18 @@ tr:hover {
 }
 
 .chartSize {
-  width: 25%;
-  margin: 30px 20px !important;
+  width: 31%;
+  background-color:#2b2c2e;
+  border-radius: 10px;
+  padding: 30px;
+  margin: 10px 5px !important;
+}
+
+.barCharts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 10px;
 }
 
 @media screen and (max-width: 1100px) {
@@ -129,6 +139,14 @@ tr:hover {
   .data2, .data4, .data6, .data8, .data9, .data11{
     display:none;
   }
+
+  .chartSize {
+    width: 100%
+  }
+  
+  .barCharts {
+    display: block;
+  }
 }
 
 @media screen and (max-width:801px) {
@@ -150,5 +168,13 @@ tr:hover {
 
   .chartSize {
     margin: 30px 20px !important;
+  }
+
+  .chartSize {
+    width: 100%
+  }
+
+  .barCharts {
+    display: block;
   }
 } 

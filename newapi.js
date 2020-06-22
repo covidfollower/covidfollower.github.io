@@ -60,6 +60,7 @@ function testeConstruction (data) {
   });
     //MORTES TOTAIS ********************************************************************************************************************************************************
     function createTotalDeathChartData(data, color) {
+      console.log(data)
       let newData1 = {
         data: [],
         backgroundColor: color,
@@ -93,7 +94,7 @@ function testeConstruction (data) {
   
       //DADO A SER IMPLEMENTADO
       for (let index = 0; index < data[0].length; index += 1) {
-        newData2.data.push(Math.round(data[0][index].total_cases_per_million));
+        newData2.data.push(Math.round(data[0][index].new_cases));
       }
       
       dataSetsInfo2.datasets.push(newData2);
@@ -135,7 +136,7 @@ function testeConstruction (data) {
   
       //DADO A SER IMPLEMENTADO
       for (let index = 0; index < data[0].length; index += 1) {
-        newData4.data.push(Math.round(data[0][index].total_deaths_per_million));
+        newData4.data.push(Math.round(data[0][index].new_deaths));
       }
       
       dataSetsInfo4.datasets.push(newData4);
@@ -225,7 +226,7 @@ let myChart1 = new Chart(ctx1, {
     },
     title: {
       display: true,
-      text: "TOTAL CASES",
+      text: "Total Cases",
       fontSize: 18,
       fontColor: "rgb(23, 162, 184)",
     },
@@ -293,7 +294,7 @@ let myChart2 = new Chart(ctx2, {
     },
     title: {
       display: true,
-      text: "TOTAL CASES PER MILLION (estimated)",
+      text: "New Cases per day",
       fontSize: 18,
       fontColor: "rgb(23, 162, 184)",
     },
@@ -362,7 +363,7 @@ let myChart3 = new Chart(ctx3, {
     },
     title: {
       display: true,
-      text: "TOTAL DEATHS",
+      text: "Total deaths",
       fontSize: 18,
       fontColor: "rgb(220, 53, 69)",
     },
@@ -431,7 +432,7 @@ let myChart4 = new Chart(ctx4, {
     },
     title: {
       display: true,
-      text: "TOTAL DEATHS PER MILLION (estimated)",
+      text: "New deaths per day",
       fontSize: 18,
       fontColor: "rgb(220, 53, 69)",
     },

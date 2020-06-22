@@ -357,6 +357,8 @@ function removingFromBarGraph() {
   countryToBeRemoved = filtered[0].classList.item(1)
 
   let indexToRemove = createdCountries.indexOf(countryToBeRemoved);
+  if(indexToRemove === -1) return
+  console.log(indexToRemove)
   createdCountries.splice(indexToRemove, 1)
   options1.series[0].data.splice(indexToRemove, 1)
   options1.series[1].data.splice(indexToRemove, 1)
