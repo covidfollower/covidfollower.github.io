@@ -6,307 +6,369 @@ const option = {
 
 function callFetch(country) {
   fetch(
-    `https://api.covid19api.com/total/dayone/country/${country}`,
+    `https://coronavirus-19-api.herokuapp.com/countries`,
     option
   ).then((response) => {
-    response.json().then((data) => apiConstruction(data));
+    response.json().then((data) => apiConstruction(data, country));
   });
 }
 
-// https://api.covid19api.com/dayone/country/china
+callFetch('World')
+callFetch('Brazil');
+callFetch('USA')
+callFetch('Spain')
+callFetch('France')
+callFetch('Italy')
 
-// let buttonTest = document.getElementById("test");
-// buttonTest.addEventListener("click", function () {
+//GERADOR DE CORES ALEAT?RIAS
+function randomColor() {
+  let r = Math.floor(Math.random() * 255);
+  let g = Math.floor(Math.random() * 255);
+  let b = Math.floor(Math.random() * 255);
+  return `rgb(${r}, ${g}, ${b})`;
+}
 
-// });
 
-// CONSTRUTOR DO EIXO X 
-let label = [];
-let contador = 0;
-for (let index = 0; index < 150; index += 1) {
-  contador += 1;
-  label.push(contador);
-};
+const createdCountries = []
 
-//CONSTRUTOR DO GRAFICO
-let dataSetsInfo = {
-  datasets: [],
-};
-function apiConstruction(data) {
+function apiConstruction(data, country) {
+  const actives = options1.series[0].data
+  const recovered = options1.series[1].data
+  const deaths = options1.series[2].data
+  const countryCalled = options1.xaxis.categories
+  const newObjCasesPerMillion = options2.series
+  const newObjDeathsPerMillion = options3.series
+  const newObjTestPerMillion = options4.series
+  const barColor = randomColor()
 
-  //GERADOR DE CORES ALEAT?RIAS
-  function randomColor() {
-    let r = Math.floor(Math.random() * 205 + 50);
-    let g = Math.floor(Math.random() * 205 + 50);
-    let b = Math.floor(Math.random() * 205 + 50);
-    return `rgb(${r}, ${g}, ${b})`;
+  const arrSearch = data.filter( arr => arr.country === country)[0];
+
+
+  if (arrSearch.active === 0 || arrSearch.recovered === 0 ||  arrSearch.active === null || arrSearch.recovered === null || createdCountries.includes(arrSearch.country) === true) {
+    return
   }
   
-  //CONSTRUTOR DA DATA DO GRAFICO
-  function createChartData(data) {
-    let newLineColor = randomColor();
-    let newData = {
-      data: [],
-      backgroundColor: newLineColor,
-      borderColor: newLineColor,
-      borderWidth: 3,
-      pointRadius: 0,
-      label: data[1].Country,
-      fill: false,
-    };
+  countryCalled.push(arrSearch.country)
+  createdCountries.push(arrSearch.country)
+  actives.push(arrSearch.active)
+  recovered.push(arrSearch.recovered)
+  deaths.push(arrSearch.deaths)
+  newObjCasesPerMillion.push({name : arrSearch.country, data : [arrSearch.casesPerOneMillion]})
+  newObjDeathsPerMillion.push({name : arrSearch.country, data : [arrSearch.deathsPerOneMillion]})
 
-    //DADO A SER IMPLEMENTADO
-    for (let index = 0; index < data.length; index += 1) {
-      newData.data.push(data[index].Deaths);
-    }
+  options2.fill.colors.push(barColor)
+  options2.legend.markers.fillColors.push(barColor)
+  options3.fill.colors.push(barColor)
+  options3.legend.markers.fillColors.push(barColor)
+  options4.fill.colors.push(barColor)
+  options4.legend.markers.fillColors.push(barColor)
 
-    dataSetsInfo.datasets.push(newData);
-    myChart.data.dataset = dataSetsInfo.dataset;
+  if(arrSearch.testsPerOneMillion === null) {
+    arrSearch.testsPerOneMillion = 0
   }
+  newObjTestPerMillion.push({name : arrSearch.country, data : [arrSearch.testsPerOneMillion]})
 
-  addData(myChart, createChartData(data));
-
-  function addData(chart, data) {
-    Object.assign(chart.data.datasets, data);
-    chart.update();
-  }
+  chart.update();
+  chart2.update();
+  chart3.update();
+  chart4.update();
 }
 
 
 //ESTRUTURA PADR?O DO GRAFICO
-let ctx = document.getElementById("myChart2").getContext("2d");
-let myChart = new Chart(ctx, {
-  type: "line",
-  data: {
-    labels: label,
-    datasets: dataSetsInfo.datasets,
+var options1 = {
+  series: [{
+    name: 'Actives',
+    data: []
+  }, {
+    name: 'Recovereds',
+    data: []
+  }, {
+    name: 'Deaths',
+    data: []
+  }],
+    chart: {
+    type: 'bar',
+    foreColor: '#fff',
+    height: 350,
+    stacked: true,
+    stackType: '100%',
+    width: '100%',
   },
-  options: {
-    tooltips: {
-      mode: "nearest",
-      intersect: false,
-    },
-    hover: {
-      mode: "nearest",
-      intersect: false,
-    },
-    scales: {
-      yAxes: [
-        {
-          type: "linear",
-          scaleLabel: {
-            display: true,
-            labelString: "Total Deaths",
-            fontSize: 18,
-          },
-          ticks: {
-            display: true,
-            fontSize: 15,
-            fontColor: "#eee",
-            min: 0,
-            suggestedMax: 30000,
-            stepSize: 1000,
-            maxTicksLimit: 30,
-          },
-        },
-      ],
-      xAxes: [
-        {
-          scaleLabel: {
-            display: true,
-            labelString: "Days from day one",
-            fontSize: 18,
-          },
-          ticks: {
-            display: true,
-            fontSize: 15,
-            fontColor: "#eee",
-            maxRotation: 0,
-          },
-        },
-      ],
-    },
-    responsive: true,
-    legend: {
-      labels: {
-        fontColor: "#eee",
-        fontSize: 15,
-      },
-    },
-    title: {
-      display: true,
-      text: "TOTAL DEATHS FROM DAY ONE",
-      fontSize: 18,
-      fontColor: "#eee",
+  plotOptions: {
+    bar: {
+      horizontal: true,
     },
   },
-});
+  stroke: {
+    width: 1,
+    colors: ['#ccc']
+  },
+  title: {
+    text: 'Percentage of Actives, Recovereds and Deaths',
+    align: 'center',
+    style: {
+      color: '#fff'
+    }
+  },
+  xaxis: {
+    categories: [],
+  },
+  tooltip: {
+    y: {
+      formatter: function (val) {
+        return val 
+      }
+    }
+  },
+  fill: {
+    opacity: 1,
+    colors: ['#1FA2B8', '#28A745', '#DC3545'],
+    /* type: 'pattern',
+    opacity: 1,
+    pattern: {
+      style: ['circles', 'slantedLines', 'verticalLines']
+    }, */
+  },
+  legend: {
+    position: 'top',
+    horizontalAlign: 'left',
+    offsetX: 40,
+    labels: {
+      colors: '#fff',
+    },
+    markers: {
+      fillColors: ['#1FA2B8', '#28A745', '#DC3545']
+    }
+  },
+  };
+var chart = new ApexCharts(document.querySelector("#chart"), options1);
+
+chart.render();
 
 
-//ESTRUTURAS PADR?ES DO GR?FICO INICIAL
-callFetch("brazil");
-callFetch("france");
-callFetch("united-states");
-callFetch("italy");
-callFetch("spain");
 
+const optSelected = document.getElementsByClassName('countries')[0];
+optSelected.addEventListener('change', function () {  
+  callFetch(optSelected.value)
+})
+const delCountry =  document.getElementsByClassName('remove')[0];
+delCountry.addEventListener('click', removingFromBarGraph)
 
-//ARRAYS QUE RECEBEM NOVOS INTEGRANTES DO GRAFICO E TAMB?M ARMAZENAM OS QUE J? EST?O L? CONTIDOS
-let arr = [];
-let arrCriado = [
-  "brazil",
-  "world",
-  "spain",
-  "italy",
-  "france",
-  "united-states",
-];
-
-/* let generateGraphic = document.getElementsByClassName("countries")[0];
-generateGraphic.addEventListener("change", graphicUpdate);
-*/
-
-//PA?SES DO SELECT QUE N?O POSSUEM DADO POR DIA
-const noData = [
-        'anguilla', 
-        'aruba',
-        'australia',
-        'bermuda', 
-        'british-virgin-islands', 
-        'caribbean-netherlands',
-        'cayman-islands',
-        'channel-islands',
-        'china',
-        'curaçao',
-        'diamond-princess', 
-        'faeroe-islands',
-        'falkland-islands',
-        'french-guiana',
-        'french-polyanesia',
-        'gibraltar',
-        'greenland',
-        'guadeloupe',
-        'hong kong',
-        'isle of man',
-        'martinique',  
-        'macao',
-        'ms-zaandam',
-        'reunion',
-        'montserrat',
-        'mayotte',
-        'turks-and-caicos'
-      ]
-
-//PAISES CUJO NOME PRECISA DE TRATAMENTO ANTES DE SER CHAMADO NO FETCH
-
-      let nameChange = [
-        'car', 'central-african-republic',
-        'congo','democratic-republic-of-the-congo',
-        'drc','democratic-republic-of-the-congo',
-        'iran, Islamic Republic of','iran',
-        'timor-leste','east-timor',
-        'usa', 'united-states'
-      ]
-
-//ARRAY QUE CONTEM PA?SES COM ZERO DE MORTE
-let noDeathCountries = [];
-
-
-//FUNCAO QUE ATUALIZA O GRAFICO DE ACORDO COM O OPT SELECIONADO
-function graphicUpdate() {
-  let trInfo = document.querySelectorAll("tr");
-  for (i = 1; i < trInfo.length; i += 1) {
-    if(noData.includes(trInfo[i].classList.item(1).toLowerCase())){
-
-    } else {
-      arr.push(trInfo[i].classList.item(1).toLowerCase());
+var options2 = {
+  series: [],
+  chart: {
+  type: 'bar',
+  height: 350,
+  foreColor: '#fff'
+},
+plotOptions: {
+  bar: {
+    horizontal: false,
+    columnWidth: '55%',
+    endingShape: 'rounded'
+  },
+},
+dataLabels: {
+  enabled: false
+},
+stroke: {
+  show: true,
+  width: 2,
+  colors: ['transparent']
+},
+xaxis: {
+  categories: ['Countries'],
+},
+yaxis: {
+  title: {
+    text: 'cases/million'
+  }
+},
+fill: {
+  opacity: 1,
+  colors: []
+},
+legend: {
+  position: 'top',
+  horizontalAlign: 'left',
+  offsetX: 40,
+  labels: {
+    colors: '#fff',
+  },
+  markers: {
+    fillColors: []
+  }
+},
+tooltip: {
+  y: {
+    formatter: function (val) {
+      return val + " cases/million"
     }
   }
+},
+title: {
+  text: 'Cases/Million',
+  align: 'center',
+  style: {
+    color: '#17A2B8'
+  },
+}
+}
+var chart2 = new ApexCharts(document.querySelector("#chart2"), options2);
+chart2.render();
+
+var options3 = {
+  series: [],
+  chart: {
+  type: 'bar',
+  height: 350,
+  foreColor: '#fff'
+},
+plotOptions: {
+  bar: {
+    horizontal: false,
+    columnWidth: '55%',
+    endingShape: 'rounded'
+  },
+},
+dataLabels: {
+  enabled: false
+},
+stroke: {
+  show: true,
+  width: 2,
+  colors: ['transparent']
+},
+xaxis: {
+  categories: ['Countries'],
+},
+yaxis: {
+  title: {
+    text: 'deaths/million'
+  }
+},
+fill: {
+  opacity: 1,
+  colors: [],
+},
+legend: {
+  position: 'top',
+  horizontalAlign: 'left',
+  offsetX: 40,
+  labels: {
+    colors: '#fff',
+  },
+  markers: {
+    fillColors: []
+  }
+},
+tooltip: {
+  y: {
+    formatter: function (val) {
+      return val + " deaths/million"
+    }
+  }
+},
+title: {
+  text: 'Deaths/Million',
+  align: 'center',
+  style: {
+    color: '#DC3545'
+  },
+}
+}
+
+var chart3 = new ApexCharts(document.querySelector("#chart3"), options3);
+chart3.render();
+
+var options4 = {
+  series: [],
+  chart: {
+  type: 'bar',
+  height: 350,
+  foreColor: '#fff'
+},
+plotOptions: {
+  bar: {
+    horizontal: false,
+    columnWidth: '55%',
+    endingShape: 'rounded'
+  },
+},
+dataLabels: {
+  enabled: false,
+},
+stroke: {
+  show: true,
+  width: 2,
+  colors: ['transparent']
+},
+xaxis: {
+  categories: ['Countries'],
+},
+yaxis: {
+  title: {
+    text: 'tests/million'
+  }
+},
+fill: {
+  opacity: 1,
+  colors: [],
+},
+legend: {
+  position: 'top',
+  horizontalAlign: 'left',
+  offsetX: 40,
+  labels: {
+    colors: '#fff',
+  },
+  markers: {
+    fillColors: []
+  }
+},
+tooltip: {
+  y: {
+    formatter: function (val) {
+      return val + " tests/million"
+    }
+  },
+  marker: {
+    show: false
+  }
+},
+title: {
+  text: 'Tests/Million',
+  align: 'center',
+  style: {
+    color: '#0072D4'
+  },
+}
+}
+
+var chart4 = new ApexCharts(document.querySelector("#chart4"), options4);
+chart4.render();
+
+
+function removingFromBarGraph() {
+  let trSelected = document.querySelectorAll("tr");
+  let countryToBeRemoved = '';
+  const filtered = [...trSelected].filter( selected => selected.classList.contains('bg-danger') === true);
+  countryToBeRemoved = filtered[0].classList.item(1)
+
+  let indexToRemove = createdCountries.indexOf(countryToBeRemoved);
+  createdCountries.splice(indexToRemove, 1)
+  options1.series[0].data.splice(indexToRemove, 1)
+  options1.series[1].data.splice(indexToRemove, 1)
+  options1.series[2].data.splice(indexToRemove, 1)
+  options1.xaxis.categories.splice(indexToRemove, 1)
+  options2.series.splice(indexToRemove, 1)
+  options3.series.splice(indexToRemove, 1)
+  options4.series.splice(indexToRemove, 1)
   
-
-  for (let i = 0; i < arr.length; i += 1) {
-    for ( let j = 0 ; j < nameChange.length ; j += 2) {
-      if (arr[i] === nameChange[j]) { 
-        arr[i] = nameChange[(j+1)];
-      }
-    }
-    
-    
-    if (arr[i] !== "world") {
-      if (arrCriado.includes(arr[i]) === false) {
-        arrCriado.push(arr[i]);
-        callFetch(arr[i]);
-        
-      }
-    }
-  }
-}
-
-
-//REFERENCIAS DOS BOTOES DISPONIVEIS PARA ATUALIZAR E MODIFICAR O GR?FICO
-let chartChange = document.getElementById("myChart2");
-let removement = document.getElementsByClassName("remove")[0];
-removement.addEventListener("click", removingFromGraph);
-
-
-//FUNCAO QUE REMOVE O PAIS SELECIONADO NA TABELA DO GRAFICO
-function removingFromGraph() {
-  let trSelected = document.getElementsByTagName("tr");
-  let countryToBeRemoved = "";
-  for (let i = 0; i < trSelected.length; i += 1) {
-    if (trSelected[i].classList.contains("bg-warning") === true) {
-      countryToBeRemoved = trSelected[i].classList.item(1).toLowerCase();
-    }
-  }
-  let toRemoveDatasetIndex;
-
-  
-    for ( let j = 0 ; j < nameChange.length ; j += 2) {
-      if (countryToBeRemoved === 'usa') { 
-        countryToBeRemoved = "united states of america";
-      }
-    }
-  
-
-    console.log(countryToBeRemoved);
-
-  if (countryToBeRemoved !== "" && countryToBeRemoved !== "world") {
-    let arrayToSearch = myChart.data.datasets;
-    console.log(arrayToSearch)
-    for (i = 0; i < arrayToSearch.length; i += 1) {
-      if (arrayToSearch[i].label.toLowerCase() === countryToBeRemoved) {
-        toRemoveDatasetIndex = i;
-        arrCriado.splice(arrCriado.indexOf(countryToBeRemoved), 1);
-        countryToBeRemoved = "";
-      }
-    }
-  }
-  if (toRemoveDatasetIndex !== undefined) {
-    removeData(myChart, toRemoveDatasetIndex);
-    toRemoveDatasetIndex = undefined;
-    removingFromGraph();
-  }
-}
-
-// FUNCAO QUE RETIRA O ARRAY A SER REMOVIDO DE DENTRO DO ARRAY PRINCIPAL
-function removeData(chart, removedDatasetIndex) {
-  chart.data.datasets.splice(removedDatasetIndex, 1);
-  chart.update();
-}
-
-
-
-function dataNumberValidity() {
-  let trInfo = document.querySelectorAll("tr");
-  for (i = 1; i < trInfo.length; i += 1) {
-    let rowClassPIcker = trInfo[i].classList.item(0);
-    let newNdFinder = document.getElementsByClassName(rowClassPIcker);
-    if (newNdFinder[4].innerHTML == 'N/D') {
-      if (trInfo.classList === undefined) {
-        noDeathCountries.push(newNdFinder[1].innerHTML);
-        break;
-      }
-    }
-  }
-  return noDeathCountries;
-}
+  chart.update()
+  chart2.update()
+  chart3.update()
+  chart4.update()
+  countryToBeRemoved = ''
+};

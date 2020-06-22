@@ -1,9 +1,12 @@
-body{
+body {
   font-family: 'Roboto', sans-serif;
   background-color:#303133;
   min-width: 600px;
 }
 
+.tabela {
+  margin-top: 10px;
+}
 
 .canvas {
   display: flex;
@@ -20,7 +23,7 @@ canvas{
   border-radius: 10px;
   padding: 30px;
   max-width:48.8%;
-  min-height: 400px;
+  min-height: 350px;
 }
 
 .btn-custom {
@@ -87,6 +90,14 @@ tr:hover {
   cursor: pointer;
 }
 
+#chart, #chart2 {
+  margin: 50px auto;
+}
+
+.chartSize {
+  margin: 30px 20px !important;
+}
+
 @media screen and (max-width: 1100px) {
   .canvas {
     flex-direction: column;
@@ -96,7 +107,7 @@ tr:hover {
 
   canvas {
     max-width: 100%;
-    min-height: 340px;
+    min-height: 350px;
     padding: 5px;
   }
 
@@ -134,10 +145,5 @@ tr:hover {
  
   .data2, .data4, .data5, .data6, .data8, .data9, .data11{
     display:none;
-  }
-
-
-  .data11 {
-    color: green !important;
   }
 } 

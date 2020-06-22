@@ -37,7 +37,6 @@ let dataSetsInfo4 = {
 
 function testeConstruction (data) {
   const arr = Object.values(data)
-  console.log(arr)
   InitiateChartCountries.forEach( element => {
 
     if (element === 'USA') { 
@@ -65,7 +64,7 @@ function testeConstruction (data) {
         data: [],
         backgroundColor: color,
         borderColor: color,
-        borderWidth: 2,
+        borderWidth: 3,
         pointRadius: 0,
         label: data[0][0].location,
         fill: false,
@@ -86,7 +85,7 @@ function testeConstruction (data) {
         data: [],
         backgroundColor: color,
         borderColor: color,
-        borderWidth: 2,
+        borderWidth: 3,
         pointRadius: 0,
         label: data[0][0].location,
         fill: false,
@@ -107,7 +106,7 @@ function testeConstruction (data) {
         data: [],
         backgroundColor: color,
         borderColor: color,
-        borderWidth: 2,
+        borderWidth: 3,
         pointRadius: 0,
         label: data[0][0].location,
         fill: false,
@@ -128,7 +127,7 @@ function testeConstruction (data) {
         data: [],
         backgroundColor: color,
         borderColor: color,
-        borderWidth: 2,
+        borderWidth: 3,
         pointRadius: 0,
         label: data[0][0].location,
         fill: false,
@@ -147,9 +146,9 @@ function testeConstruction (data) {
 
 //GERADOR DE CORES ALEATÓRIAS
 function randomColor() {
-  let r = Math.floor(Math.random() * 205 + 50);
-    let g = Math.floor(Math.random() * 205 + 50);
-    let b = Math.floor(Math.random() * 205 + 50);
+  let r = Math.floor(Math.random() * 255);
+    let g = Math.floor(Math.random() * 255);
+    let b = Math.floor(Math.random() * 255);
     return `rgb(${r}, ${g}, ${b})`;
 }
 
@@ -454,11 +453,13 @@ function removingFromGraph() {
   if (countryToBeRemoved === 'USA') { 
     countryToBeRemoved = "United States";
   }
+  if (countryToBeRemoved === 'UK') { 
+    countryToBeRemoved = "United Kingdom";
+  }
   
 
 
   let arraysToSearch = [myChart1.data.datasets, myChart2.data.datasets, myChart3.data.datasets, myChart4.data.datasets]
-  console.log(arraysToSearch)
   
   const chartByOne = arraysToSearch.forEach( chart => {
     const countryByCountry = chart.forEach( chartCountries => {
@@ -478,14 +479,6 @@ function removingFromGraph() {
   myChart2.update()
   myChart3.update()
   myChart4.update()
-      
-    
-  
-//  if (toRemoveDatasetIndex !== undefined) {
-  //  removeData(myChart, toRemoveDatasetIndex);
-    //toRemoveDatasetIndex = undefined;
-    //removingFromGraph();
- // }
 }
 const removeBut = document.getElementsByClassName('remove')[0]
 removeBut.addEventListener('click', removingFromGraph)

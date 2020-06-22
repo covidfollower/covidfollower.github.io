@@ -62,6 +62,7 @@ function mainConstruction(data) {
     index = finder(data, customOneOpt.value);
     if (customOneOpt.value != "default") {
       tableConstructor(data, customOneOpt.value);
+      customOneOpt.value = 'default'
     }
     
     //customOneOpt.value = "default";
