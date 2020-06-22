@@ -143,10 +143,6 @@ tr:hover {
   .chartSize {
     width: 100%
   }
-  
-  .barCharts {
-    display: block;
-  }
 }
 
 @media screen and (max-width:801px) {
@@ -167,14 +163,6 @@ tr:hover {
   }
 
   .chartSize {
-    margin: 30px 20px !important;
-  }
-
-  .chartSize {
-    width: 100%
-  }
-
-  .barCharts {
-    display: block;
+    width: 100%;
   }
 } 
