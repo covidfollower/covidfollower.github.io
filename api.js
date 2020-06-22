@@ -88,6 +88,9 @@ var options1 = {
     data: []
   }],
     chart: {
+    toolbar: {
+      show: false,
+    },
     type: 'bar',
     foreColor: '#fff',
     height: 350,
@@ -158,6 +161,9 @@ delCountry.addEventListener('click', removingFromBarGraph)
 var options2 = {
   series: [],
   chart: {
+  toolbar: {
+    show : false,
+  },
   type: 'bar',
   height: 350,
   foreColor: '#fff'
@@ -221,6 +227,9 @@ chart2.render();
 var options3 = {
   series: [],
   chart: {
+  toolbar : {
+    show: false,
+  },
   type: 'bar',
   height: 350,
   foreColor: '#fff'
@@ -285,6 +294,9 @@ chart3.render();
 var options4 = {
   series: [],
   chart: {
+  toolbar: {
+    show : false,
+  },
   type: 'bar',
   height: 350,
   foreColor: '#fff'
