@@ -12,26 +12,14 @@ function callFetch(country) {
     );
   }
   
-/*   callFetch("World");
+  callFetch("World");
   callFetch("Brazil");
   callFetch("USA");
   callFetch("Spain");
   callFetch("France");
-  callFetch("Italy"); */
+  callFetch("Italy");
   
   //GERADOR DE CORES ALEAT?RIAS
-let InitiateChartCountries2 = [
- "World",
- "Brazil",
- "USA",
- "Spain",
- "France",
- "Italy",
-];
-
-for (let i = 0; i < 6; i += 1) {
-  callFetch(InitiateChartCountries2[i])
-}
 
 let createdCountries = []
 let selecter = 0
