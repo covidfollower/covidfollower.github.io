@@ -145,6 +145,21 @@ tr:hover {
   }
 }
 
+.footer {
+  width: 100%;
+  min-height: 80px;
+  background-color: #222222;
+}
+
+.info {
+  font-size: 25px;
+}
+
+.info-text {
+  margin-top: 20px;
+  font-size: 35px;
+}
+
 @media screen and (max-width:801px) {
   .selectDiv {
     width: 80%;
