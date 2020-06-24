@@ -32,6 +32,7 @@ function randomColor() {
 const createdCountries = []
 
 function apiConstruction(data, country) {
+  console.log(data)
   const actives = options1.series[0].data
   const recovered = options1.series[1].data
   const deaths = options1.series[2].data
