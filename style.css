@@ -1,5 +1,5 @@
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto' , sans-serif !important;
   background-color:#303133;
   min-width: 600px;
 }
@@ -152,12 +152,12 @@ tr:hover {
 }
 
 .info {
-  font-size: 25px;
+  font-size: 15px;
 }
 
 .info-text {
   margin-top: 20px;
-  font-size: 35px;
+  font-size: 20px;
 }
 
 @media screen and (max-width:801px) {
