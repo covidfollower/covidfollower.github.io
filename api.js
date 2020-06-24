@@ -43,16 +43,6 @@ function apiConstruction(data, country) {
 
   const arrSearch = data.filter( arr => arr.country === country)[0];
 
-
-  if (arrSearch.active === 0 || arrSearch.recovered === 0 ||  arrSearch.active === null || arrSearch.recovered === null || createdCountries.includes(arrSearch.country) === true) {
-    return
-  }
-  
-  countryCalled.push(arrSearch.country)
-  createdCountries.push(arrSearch.country)
-  actives.push(arrSearch.active)
-  recovered.push(arrSearch.recovered)
-  deaths.push(arrSearch.deaths)
   newObjCasesPerMillion.push({name : arrSearch.country, data : [arrSearch.casesPerOneMillion]})
   newObjDeathsPerMillion.push({name : arrSearch.country, data : [arrSearch.deathsPerOneMillion]})
 
@@ -67,6 +57,19 @@ function apiConstruction(data, country) {
     arrSearch.testsPerOneMillion = 0
   }
   newObjTestPerMillion.push({name : arrSearch.country, data : [arrSearch.testsPerOneMillion]})
+  
+  if (arrSearch.active === 0 || arrSearch.recovered === 0 ||  arrSearch.active === null || arrSearch.recovered === null || createdCountries.includes(arrSearch.country) === true) {
+    countryCalled.push(arrSearch.country)
+    createdCountries.push(arrSearch.country)
+    return
+  }
+  
+  countryCalled.push(arrSearch.country)
+  createdCountries.push(arrSearch.country)
+  actives.push(arrSearch.active)
+  recovered.push(arrSearch.recovered)
+  deaths.push(arrSearch.deaths)
+
 
   chart.update();
   chart2.update();

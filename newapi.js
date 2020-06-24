@@ -60,7 +60,6 @@ function testeConstruction (data) {
   });
     //MORTES TOTAIS ********************************************************************************************************************************************************
     function createTotalDeathChartData(data, color) {
-      console.log(data)
       let newData1 = {
         data: [],
         backgroundColor: color,
