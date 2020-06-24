@@ -150,14 +150,30 @@ function mainConstruction(data) {
     posicao += 1;
   }
 
-  function randomColor() {
-    let r = Math.floor(Math.random() * 255);
-    let g = Math.floor(Math.random() * 255);
-    let b = Math.floor(Math.random() * 255);
-
-    return "rgba(" + r + ", " + g + ", " + b + ", " + "0.7" + ")";
-  }
-
+  let selecter = 0
+function randomColor() {
+  const colorArray = ['rgb(92, 236, 108)',
+  "rgb(210, 33, 41)",
+  "rgb(40, 163, 73)",
+  "rgb(249, 239, 30)",
+  "rgb(35, 61, 148)",
+  "rgb(246, 127, 33)",
+  "rgb(255, 255, 255)",
+  "rgb(245, 36, 156)",
+  'rgb(151, 145, 141)',
+  'rgb(89, 160, 198)',
+  'rgb(143, 25, 179)',
+  'rgb(87, 123, 97)',
+  'rgb(92, 57, 35)',
+  'rgb(118, 119, 30)',
+  'rgb(141, 18, 39)',
+  'rgb(35, 223, 156)',
+  'rgb(35, 168, 187)', ]
+  let newColor = colorArray[selecter]
+  selecter += 1
+  if(selecter === 7) selecter = 0
+  return newColor;
+}
 
   tableConstructor(data, "World");
   tableConstructor(data, "USA");
