@@ -13,11 +13,11 @@ function callFetch(country) {
   }
   
   callFetch("World");
-  setTimeout(() => callFetch("Brazil"), 500);
-  setTimeout(() => callFetch("USA"), 1000);
-  setTimeout(() => callFetch("Spain"), 1500);
-  setTimeout(() => callFetch("France"), 2000);
-  setTimeout(() => callFetch("Italy"), 2500);
+  callFetch("Brazil");
+  callFetch("USA");
+  callFetch("Spain");
+  callFetch("France");
+  callFetch("Italy");
   
   //GERADOR DE CORES ALEAT?RIAS
 
