@@ -12,19 +12,28 @@ function callFetch(country) {
     );
   }
   
-callFetch("World");
-callFetch("Brazil");
-callFetch("USA");
-callFetch("Spain");
-callFetch("France");
-callFetch("Italy");
-
-//GERADOR DE CORES ALEAT?RIAS
+/*   callFetch("World");
+  callFetch("Brazil");
+  callFetch("USA");
+  callFetch("Spain");
+  callFetch("France");
+  callFetch("Italy"); */
+  
+  //GERADOR DE CORES ALEAT?RIAS
+let InitiateChartCountries2 = [
+ "World",
+ "Brazil",
+ "USA",
+ "Spain",
+ "France",
+ "Italy",
+];
+InitiateChartCountries2.forEach( pais => callFetch(pais))
+let createdCountries = []
 let selecter = 0
-const createdCountries = [];
-console.log(createdCountries)
 
 function apiConstruction(data, country) {
+
   const actives = options1.series[0].data;
   const recovered = options1.series[1].data;
   const deaths = options1.series[2].data;
@@ -34,7 +43,6 @@ function apiConstruction(data, country) {
   const newObjTestPerMillion = options4.series;
   
   const arrSearch = data.filter((arr) => arr.country === country)[0];
-  
   if (createdCountries.includes(arrSearch.country) === true) return
   
   newObjCasesPerMillion.push({
@@ -53,21 +61,21 @@ function apiConstruction(data, country) {
     name: arrSearch.country,
     data: [arrSearch.testsPerOneMillion],
   });
-  countryCalled.push(arrSearch.country);
   createdCountries.push(arrSearch.country);
   
   chart2.update();
   chart3.update();
   chart4.update();
-
+  
   if (
     arrSearch.active === 0 ||
     arrSearch.recovered === 0 ||
     arrSearch.active === null ||
     arrSearch.recovered === null
     ) {
-    return;
-  }
+      return;
+    }
+  countryCalled.push(arrSearch.country);
   actives.push(arrSearch.active);
   recovered.push(arrSearch.recovered);
   deaths.push(arrSearch.deaths);

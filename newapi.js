@@ -43,6 +43,7 @@ let dataSetsInfo4 = {
 function testeConstruction(data) {
   const arr = Object.values(data);
   InitiateChartCountries.forEach((element) => {
+  
     if (element === "USA") {
       element = "United States";
     }
