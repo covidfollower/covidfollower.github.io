@@ -9,9 +9,15 @@ function callFetch(country) {
     (response) => {
       response.json().then((data) => apiConstruction(data, country));
     }
-  );
-}
-
+    );
+  }
+  
+callFetch("World");
+callFetch("Brazil");
+callFetch("USA");
+callFetch("Spain");
+callFetch("France");
+callFetch("Italy");
 
 //GERADOR DE CORES ALEAT?RIAS
 let selecter = 0
@@ -426,9 +432,3 @@ function removingFromBarGraph() {
     countryToBeRemoved = "";
   }
   
-  callFetch("World");
-  callFetch("Brazil");
-  callFetch("USA");
-  callFetch("Spain");
-  callFetch("France");
-  callFetch("Italy");
