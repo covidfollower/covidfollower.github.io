@@ -12,24 +12,14 @@ function callFetch(country) {
     );
   }
   
-  const openingorder = (callback) => {
-    callFetch('Italy')
-    callback = (country, callback) => {
-      callFetch(country)
-      callback = (country, callback) => {
-        callFetch(country)
-        callback = (country, callback) => {
-          callFetch(country)
-          callback = (country, callback) => {
-            callFetch(country)
-            callback = () => callFetch ('World')
-          }
-          
-        }
-      }
-    }
-  } 
-  openingorder(callFetch('France', callFetch('Spain', callFetch('USA', callFetch('Brazil', callFetch('World'))))))
+  
+  setTimeout(function(){callFetch('World')},500)
+  setTimeout(function(){callFetch('Brazil')},1000)
+  setTimeout(function(){callFetch('USA')},1500)
+  setTimeout(function(){callFetch('Spain')},2000)
+  setTimeout(function(){callFetch('France')},2500)
+  setTimeout(function(){callFetch('Italy')},3000)
+
   //GERADOR DE CORES ALEAT?RIAS
 
 let createdCountries = []
