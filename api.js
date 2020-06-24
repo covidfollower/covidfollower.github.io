@@ -28,7 +28,11 @@ let InitiateChartCountries2 = [
  "France",
  "Italy",
 ];
-InitiateChartCountries2.forEach( pais => callFetch(pais))
+
+for (let i = 0; i < 6; i += 1) {
+  callFetch(InitiateChartCountries2[i])
+}
+
 let createdCountries = []
 let selecter = 0
 
