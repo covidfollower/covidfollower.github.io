@@ -237,8 +237,12 @@ const lineChart = {
   },
   toolbar: {
     show: false,
+  },
+  animations: {
+    enabled: false
   }
 };
+
 const colors = [
   "rgb(210, 33, 41)",
   "rgb(40, 163, 73)",

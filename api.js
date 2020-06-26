@@ -119,6 +119,9 @@ const barChart = {
   type: "bar",
   height: 350,
   foreColor: "#fff",
+  animations: {
+    enabled: false,
+  }
 };
 
 const barPlotOptions = {
@@ -169,6 +172,9 @@ let options1 = {
     stacked: true,
     stackType: "100%",
     width: "100%",
+    animations: {
+      enabled: false,
+    }
   },
   colors: ["#1FA2B8", "#28A745", "#DC3545"],
   plotOptions: {
