@@ -11,6 +11,7 @@ const spanTestsMillion = document.getElementsByClassName("span-tests-million");
 const spanTodayCases = document.getElementsByClassName("span-today-cases");
 const spanTodayDeaths = document.getElementsByClassName("span-today-deaths");
 const totalCases = document.getElementById("total-cases");
+
 const options = {
   method: "GET",
   mode: "cors",
@@ -180,7 +181,6 @@ function mainConstruction(data) {
   tableConstructor(data, "World");
   tableConstructor(data, "USA");
   tableConstructor(data, "Brazil");
-  tableConstructor(data, "Spain");
   tableConstructor(data, "Italy");
   tableConstructor(data, "France");
   optionConstruction(data);

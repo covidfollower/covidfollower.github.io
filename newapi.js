@@ -20,7 +20,6 @@ function newCallFetch() {
     "World",
     "Brazil",
     "United States",
-    "Spain",
     "France",
     "Italy",
   ];

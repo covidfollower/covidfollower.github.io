@@ -12,16 +12,15 @@ function callFetch(country) {
   );
 }
 
-async function initiate () {
-  callFetch('World')
-  await callFetch('Brazil')
-  await callFetch('USA');
-  await callFetch('Spain');
-  await callFetch('France');
-  await callFetch('Italy');
+async function initiate() {
+  callFetch("World");
+  await callFetch("Brazil");
+  await callFetch("USA");
+  await callFetch("France");
+  await callFetch("Italy");
 }
 
-initiate()
+initiate();
 
 /* 
 callFetch("World");
@@ -45,10 +44,9 @@ setTimeout(function () {
 const headerElement = document.getElementsByTagName("header")[0];
 
 let createdCountries = [];
-let noPercentageCountries = []
+let noPercentageCountries = [];
 let selecter = 0;
 function apiConstruction(data, country) {
-
   const actives = options1.series[0].data;
   const recovered = options1.series[1].data;
   const deaths = options1.series[2].data;
@@ -59,7 +57,7 @@ function apiConstruction(data, country) {
 
   const arrSearch = data.filter((arr) => arr.country === country)[0];
   if (createdCountries.includes(arrSearch.country) === true) {
-  return;
+    return;
   }
 
   newObjCasesPerMillion.push({
@@ -90,7 +88,7 @@ function apiConstruction(data, country) {
     arrSearch.active === null ||
     arrSearch.recovered === null
   ) {
-    noPercentageCountries.push(arrSearch.country)
+    noPercentageCountries.push(arrSearch.country);
     let div = document.getElementById("alertMessage");
     div.style.display = "block";
     div.innerHTML = `Ops, ${country} has no atives or recovereds numbers to be shown at the percentage chart`;
@@ -145,6 +143,20 @@ const barPlotOptions = {
   },
 };
 
+const barLegends = {
+  position: "top",
+  horizontalAlign: "left",
+  offsetX: 40,
+  labels: {
+    colors: "#fff",
+  },
+};
+
+const barStroke = {
+  show: true,
+  width: 2,
+  colors: ["transparent"],
+};
 
 var options1 = {
   series: [
@@ -239,11 +251,7 @@ var options2 = {
   dataLabels: {
     enabled: false,
   },
-  stroke: {
-    show: true,
-    width: 2,
-    colors: ["transparent"],
-  },
+  stroke: barStroke,
   xaxis: {
     categories: ["Countries"],
   },
@@ -255,14 +263,7 @@ var options2 = {
   fill: {
     opacity: 1,
   },
-  legend: {
-    position: "top",
-    horizontalAlign: "left",
-    offsetX: 40,
-    labels: {
-      colors: "#fff",
-    },
-  },
+  legend: barLegends,
   tooltip: {
     y: {
       formatter: function (val) {
@@ -289,11 +290,7 @@ var options3 = {
   dataLabels: {
     enabled: false,
   },
-  stroke: {
-    show: true,
-    width: 2,
-    colors: ["transparent"],
-  },
+  stroke: barStroke,
   xaxis: {
     categories: ["Countries"],
   },
@@ -305,14 +302,7 @@ var options3 = {
   fill: {
     opacity: 1,
   },
-  legend: {
-    position: "top",
-    horizontalAlign: "left",
-    offsetX: 40,
-    labels: {
-      colors: "#fff",
-    },
-  },
+  legend: barLegends,
   tooltip: {
     y: {
       formatter: function (val) {
@@ -340,11 +330,7 @@ var options4 = {
   dataLabels: {
     enabled: false,
   },
-  stroke: {
-    show: true,
-    width: 2,
-    colors: ["transparent"],
-  },
+  stroke: barStroke,
   xaxis: {
     categories: ["Countries"],
   },
@@ -356,14 +342,7 @@ var options4 = {
   fill: {
     opacity: 1,
   },
-  legend: {
-    position: "top",
-    horizontalAlign: "left",
-    offsetX: 40,
-    labels: {
-      colors: "#fff",
-    },
-  },
+  legend: barLegends,
   tooltip: {
     y: {
       formatter: function (val) {
@@ -395,10 +374,10 @@ function removingFromBarGraph() {
   createdCountries.splice(indexToRemove, 1);
 
   if (noPercentageCountries.includes(countryToBeRemoved) === false) {
-  options1.series[0].data.splice(indexToRemove, 1);
-  options1.series[1].data.splice(indexToRemove, 1);
-  options1.series[2].data.splice(indexToRemove, 1);
-  options1.xaxis.categories.splice(indexToRemove, 1);
+    options1.series[0].data.splice(indexToRemove, 1);
+    options1.series[1].data.splice(indexToRemove, 1);
+    options1.series[2].data.splice(indexToRemove, 1);
+    options1.xaxis.categories.splice(indexToRemove, 1);
   }
   options2.series.splice(indexToRemove, 1);
   options3.series.splice(indexToRemove, 1);
