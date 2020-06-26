@@ -38,7 +38,7 @@ function newCallFetch() {
     
     //function that fixes initial null data
     const fixer = data["OWID_WRL"].length;
-    
+
     const chartInitialFixer = (arr) => {
       if (arr.length < fixer) {
       arr.unshift(0);
@@ -58,6 +58,13 @@ function newCallFetch() {
     if (element === "UK") {
       element = "United Kingdom";
     }
+    if (element === "CAR") {
+      element = "Central African Republic";
+    }
+    if (element === "DRC") {
+      element = "Democratic Republic of Congo";
+    }
+    
 
     countryToBeCreated = element;
     let indexArrayFiltered = arr.filter(
@@ -265,7 +272,7 @@ const lineChartStroke = {
 //end of chart defaults
 
 //total cases chart
-var options6 = {
+let options6 = {
   chart: lineChart,
   colors: colors,
   stroke: lineChartStroke,
@@ -291,12 +298,12 @@ var options6 = {
     align: "center",
   },
 };
-var chart6 = new ApexCharts(document.querySelector("#chart6"), options6);
+let chart6 = new ApexCharts(document.querySelector("#chart6"), options6);
 chart6.render();
 //end of new cases chart
 
 //new cases chart
-var options7 = {
+let options7 = {
   chart: lineChart,
   colors: colors,
   stroke: lineChartStroke,
@@ -322,12 +329,12 @@ var options7 = {
     align: "center",
   },
 };
-var chart7 = new ApexCharts(document.querySelector("#chart7"), options7);
+let chart7 = new ApexCharts(document.querySelector("#chart7"), options7);
 chart7.render();
 //end of new cases chart
 
 //total death chart
-var options8 = {
+let options8 = {
   chart: lineChart,
   colors: colors,
   stroke: lineChartStroke,
@@ -353,12 +360,12 @@ var options8 = {
     align: "center",
   },
 };
-var chart8 = new ApexCharts(document.querySelector("#chart8"), options8);
+let chart8 = new ApexCharts(document.querySelector("#chart8"), options8);
 chart8.render();
 //end of death chart
 
 //deaths per day chart
-var options9 = {
+let options9 = {
   chart: lineChart,
   colors: colors,
   stroke: lineChartStroke,
@@ -384,7 +391,7 @@ var options9 = {
     align: "center",
   },
 };
-var chart9 = new ApexCharts(document.querySelector("#chart9"), options9);
+let chart9 = new ApexCharts(document.querySelector("#chart9"), options9);
 chart9.render();
 //end of deaths per day chart
 

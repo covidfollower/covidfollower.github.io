@@ -37,7 +37,6 @@ function apiConstruction(data) {
   const newObjTestPerMillion = options4.series;
 
   const country = chartCountries1.forEach( element => {
-    console.log(element)
   const arrSearch = data.filter((arr) => arr.country === element)[0];
   if (createdCountries.includes(arrSearch.country) === true) {
     return;
@@ -74,7 +73,7 @@ function apiConstruction(data) {
     noPercentageCountries.push(arrSearch.country);
     let div = document.getElementById("alertMessage");
     div.style.display = "block";
-    div.innerHTML = `Ops, ${country} has no atives or recovereds numbers to be shown at the percentage chart`;
+    div.innerHTML = `Ops, ${element} has no atives or recovereds numbers to be shown at the percentage chart`;
     headerElement.appendChild(div);
     setTimeout(function () {
       div.style.display = "none";
@@ -142,7 +141,7 @@ const barStroke = {
   colors: ["transparent"],
 };
 
-var options1 = {
+let options1 = {
   series: [
     {
       name: "Actives",
@@ -216,18 +215,19 @@ var options1 = {
     },
   },
 };
-var chart = new ApexCharts(document.querySelector("#chart"), options1);
+let chart = new ApexCharts(document.querySelector("#chart"), options1);
 
 chart.render();
 
 const optSelected = document.getElementsByClassName("countries")[0];
 optSelected.addEventListener("change", function () {
-  callFetch(optSelected.value);
+  chartCountries1.push(optSelected.value);
+  callFetch();
 });
 const delCountry = document.getElementsByClassName("remove")[0];
 delCountry.addEventListener("click", removingFromBarGraph);
 
-var options2 = {
+let options2 = {
   series: [],
   chart: barChart,
   colors: colors1,
@@ -263,10 +263,10 @@ var options2 = {
     },
   },
 };
-var chart2 = new ApexCharts(document.querySelector("#chart2"), options2);
+let chart2 = new ApexCharts(document.querySelector("#chart2"), options2);
 chart2.render();
 
-var options3 = {
+let options3 = {
   series: [],
   chart: barChart,
   colors: colors1,
@@ -303,10 +303,10 @@ var options3 = {
   },
 };
 
-var chart3 = new ApexCharts(document.querySelector("#chart3"), options3);
+let chart3 = new ApexCharts(document.querySelector("#chart3"), options3);
 chart3.render();
 
-var options4 = {
+let options4 = {
   series: [],
   chart: barChart,
   colors: colors1,
@@ -343,7 +343,7 @@ var options4 = {
   },
 };
 
-var chart4 = new ApexCharts(document.querySelector("#chart4"), options4);
+let chart4 = new ApexCharts(document.querySelector("#chart4"), options4);
 chart4.render();
 
 function removingFromBarGraph() {
