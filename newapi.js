@@ -19,9 +19,12 @@ function newCallFetch() {
   let chartCountries = [
     "World",
     "Brazil",
-    "United States",
-    "France",
+    "USA",
+    "Russia",
+    "India",
     "Italy",
+    "Mexico",
+    "France",
   ];
   
   //array that holds already created countries, avoid doubling

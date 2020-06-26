@@ -20,8 +20,11 @@ let chartCountries1 = [
   "World",
   "Brazil",
   "USA",
-  "France",
+  "Russia",
+  "India",
   "Italy",
+  "Mexico",
+  "France",
 ];
 let createdCountries = [];
 let noPercentageCountries = [];
