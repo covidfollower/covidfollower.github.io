@@ -9,22 +9,44 @@ function callFetch(country) {
     (response) => {
       response.json().then((data) => apiConstruction(data, country));
     }
-    );
-  }
-  
-  
-  callFetch('World');
-  setTimeout(function(){callFetch('Brazil')},1000);
-  setTimeout(function(){callFetch('USA')},2000);
-  setTimeout(function(){callFetch('Spain')},3000);
-  setTimeout(function(){callFetch('France')},4000);
-  setTimeout(function(){callFetch('Italy')},5000);
+  );
+}
 
-  //GERADOR DE CORES ALEAT?RIAS
+async function initiate () {
+  callFetch('World')
+  await callFetch('Brazil')
+  await callFetch('USA');
+  await callFetch('Spain');
+  await callFetch('France');
+  await callFetch('Italy');
+}
 
-let createdCountries = []
-let selecter = 0
+initiate()
 
+/* 
+callFetch("World");
+setTimeout(function () {
+  callFetch("Brazil");
+}, 1000);
+setTimeout(function () {
+  callFetch("USA");
+}, 2000);
+setTimeout(function () {
+  callFetch("Spain");
+}, 3000);
+setTimeout(function () {
+  callFetch("France");
+}, 4000);
+setTimeout(function () {
+  callFetch("Italy");
+}, 5000); */
+
+//ELEMENTO QUE RECEBE AVISOS
+const headerElement = document.getElementsByTagName("header")[0];
+
+let createdCountries = [];
+let noPercentageCountries = []
+let selecter = 0;
 function apiConstruction(data, country) {
 
   const actives = options1.series[0].data;
@@ -34,10 +56,12 @@ function apiConstruction(data, country) {
   const newObjCasesPerMillion = options2.series;
   const newObjDeathsPerMillion = options3.series;
   const newObjTestPerMillion = options4.series;
-  
+
   const arrSearch = data.filter((arr) => arr.country === country)[0];
-  if (createdCountries.includes(arrSearch.country) === true) return
-  
+  if (createdCountries.includes(arrSearch.country) === true) {
+  return;
+  }
+
   newObjCasesPerMillion.push({
     name: arrSearch.country,
     data: [arrSearch.casesPerOneMillion],
@@ -55,28 +79,73 @@ function apiConstruction(data, country) {
     data: [arrSearch.testsPerOneMillion],
   });
   createdCountries.push(arrSearch.country);
-  
+
   chart2.update();
   chart3.update();
   chart4.update();
-  
+
   if (
     arrSearch.active === 0 ||
     arrSearch.recovered === 0 ||
     arrSearch.active === null ||
     arrSearch.recovered === null
-    ) {
-      return;
-    }
+  ) {
+    noPercentageCountries.push(arrSearch.country)
+    let div = document.getElementById("alertMessage");
+    div.style.display = "block";
+    div.innerHTML = `Ops, ${country} has no atives or recovereds numbers to be shown at the percentage chart`;
+    headerElement.appendChild(div);
+    setTimeout(function () {
+      div.style.display = "none";
+    }, 7000);
+    return;
+  }
   countryCalled.push(arrSearch.country);
   actives.push(arrSearch.active);
   recovered.push(arrSearch.recovered);
   deaths.push(arrSearch.deaths);
-  
+
   chart.update();
 }
 
-//ESTRUTURA PADR?O DO GRAFICO
+// bar chart defaults
+const colors1 = [
+  "rgb(210, 33, 41)",
+  "rgb(40, 163, 73)",
+  "rgb(249, 239, 30)",
+  "rgb(35, 61, 148)",
+  "rgb(246, 127, 33)",
+  "rgb(255, 255, 255)",
+  "rgb(245, 36, 156)",
+  "rgb(151, 145, 141)",
+  "rgb(89, 160, 198)",
+  "rgb(143, 25, 179)",
+  "rgb(87, 123, 97)",
+  "rgb(92, 57, 35)",
+  "rgb(118, 119, 30)",
+  "rgb(141, 18, 39)",
+  "rgb(35, 223, 156)",
+  "rgb(35, 168, 187)",
+];
+
+const barChart = {
+  toolbar: {
+    show: false,
+  },
+  type: "bar",
+  height: 350,
+  foreColor: "#fff",
+};
+
+const barPlotOptions = {
+  bar: {
+    horizontal: false,
+    columnWidth: "55%",
+    endingShape: "rounded",
+  },
+};
+
+
 var options1 = {
   series: [
     {
@@ -164,40 +233,9 @@ delCountry.addEventListener("click", removingFromBarGraph);
 
 var options2 = {
   series: [],
-  chart: {
-    toolbar: {
-      show: false,
-    },
-    type: "bar",
-    height: 350,
-    foreColor: "#fff",
-  },
-  colors: [
-    'rgb(92, 236, 108)',
-    "rgb(210, 33, 41)",
-    "rgb(40, 163, 73)",
-    "rgb(249, 239, 30)",
-    "rgb(35, 61, 148)",
-    "rgb(246, 127, 33)",
-    "rgb(255, 255, 255)",
-    "rgb(245, 36, 156)",
-    'rgb(151, 145, 141)',
-    'rgb(89, 160, 198)',
-    'rgb(143, 25, 179)',
-    'rgb(87, 123, 97)',
-    'rgb(92, 57, 35)',
-    'rgb(118, 119, 30)',
-    'rgb(141, 18, 39)',
-    'rgb(35, 223, 156)',
-    'rgb(35, 168, 187)', 
-  ],
-  plotOptions: {
-    bar: {
-      horizontal: false,
-      columnWidth: "55%",
-      endingShape: "rounded",
-    },
-  },
+  chart: barChart,
+  colors: colors1,
+  plotOptions: barPlotOptions,
   dataLabels: {
     enabled: false,
   },
@@ -245,40 +283,9 @@ chart2.render();
 
 var options3 = {
   series: [],
-  chart: {
-    toolbar: {
-      show: false,
-    },
-    type: "bar",
-    height: 350,
-    foreColor: "#fff",
-  },
-  colors: [
-    'rgb(92, 236, 108)',
-    "rgb(210, 33, 41)",
-    "rgb(40, 163, 73)",
-    "rgb(249, 239, 30)",
-    "rgb(35, 61, 148)",
-    "rgb(246, 127, 33)",
-    "rgb(255, 255, 255)",
-    "rgb(245, 36, 156)",
-    'rgb(151, 145, 141)',
-    'rgb(89, 160, 198)',
-    'rgb(143, 25, 179)',
-    'rgb(87, 123, 97)',
-    'rgb(92, 57, 35)',
-    'rgb(118, 119, 30)',
-    'rgb(141, 18, 39)',
-    'rgb(35, 223, 156)',
-    'rgb(35, 168, 187)', 
-  ],
-  plotOptions: {
-    bar: {
-      horizontal: false,
-      columnWidth: "55%",
-      endingShape: "rounded",
-    },
-  },
+  chart: barChart,
+  colors: colors1,
+  plotOptions: barPlotOptions,
   dataLabels: {
     enabled: false,
   },
@@ -327,40 +334,9 @@ chart3.render();
 
 var options4 = {
   series: [],
-  chart: {
-    toolbar: {
-      show: false,
-    },
-    type: "bar",
-    height: 350,
-    foreColor: "#fff",
-  },
-  colors: [
-    'rgb(92, 236, 108)',
-    "rgb(210, 33, 41)",
-    "rgb(40, 163, 73)",
-    "rgb(249, 239, 30)",
-    "rgb(35, 61, 148)",
-    "rgb(246, 127, 33)",
-    "rgb(255, 255, 255)",
-    "rgb(245, 36, 156)",
-    'rgb(151, 145, 141)',
-    'rgb(89, 160, 198)',
-    'rgb(143, 25, 179)',
-    'rgb(87, 123, 97)',
-    'rgb(92, 57, 35)',
-    'rgb(118, 119, 30)',
-    'rgb(141, 18, 39)',
-    'rgb(35, 223, 156)',
-    'rgb(35, 168, 187)', 
-  ],
-  plotOptions: {
-    bar: {
-      horizontal: false,
-      columnWidth: "55%",
-      endingShape: "rounded",
-    },
-  },
+  chart: barChart,
+  colors: colors1,
+  plotOptions: barPlotOptions,
   dataLabels: {
     enabled: false,
   },
@@ -412,24 +388,25 @@ function removingFromBarGraph() {
   let countryToBeRemoved = "";
   const filtered = [...trSelected].filter(
     (selected) => selected.classList.contains("bg-danger") === true
-    );
-    countryToBeRemoved = filtered[0].classList.item(1);
-    
-    let indexToRemove = createdCountries.indexOf(countryToBeRemoved);
-    if (indexToRemove === -1) return;
-    createdCountries.splice(indexToRemove, 1);
-    options1.series[0].data.splice(indexToRemove, 1);
-    options1.series[1].data.splice(indexToRemove, 1);
-    options1.series[2].data.splice(indexToRemove, 1);
-    options1.xaxis.categories.splice(indexToRemove, 1);
-    options2.series.splice(indexToRemove, 1);
-    options3.series.splice(indexToRemove, 1);
-    options4.series.splice(indexToRemove, 1);
-    
-    chart.update();
-    chart2.update();
-    chart3.update();
-    chart4.update();
-    countryToBeRemoved = "";
+  );
+  countryToBeRemoved = filtered[0].classList.item(1);
+  let indexToRemove = createdCountries.indexOf(countryToBeRemoved);
+  if (indexToRemove === -1) return;
+  createdCountries.splice(indexToRemove, 1);
+
+  if (noPercentageCountries.includes(countryToBeRemoved) === false) {
+  options1.series[0].data.splice(indexToRemove, 1);
+  options1.series[1].data.splice(indexToRemove, 1);
+  options1.series[2].data.splice(indexToRemove, 1);
+  options1.xaxis.categories.splice(indexToRemove, 1);
   }
-  
+  options2.series.splice(indexToRemove, 1);
+  options3.series.splice(indexToRemove, 1);
+  options4.series.splice(indexToRemove, 1);
+
+  chart.update();
+  chart2.update();
+  chart3.update();
+  chart4.update();
+  countryToBeRemoved = "";
+}

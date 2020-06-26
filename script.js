@@ -62,9 +62,9 @@ function mainConstruction(data) {
     index = finder(data, customOneOpt.value);
     if (customOneOpt.value != "default") {
       tableConstructor(data, customOneOpt.value);
-      customOneOpt.value = 'default'
+      customOneOpt.value = "default";
     }
-    
+
     //customOneOpt.value = "default";
   });
 
@@ -98,9 +98,9 @@ function mainConstruction(data) {
     let tableIndex = finder(data, country);
 
     // SOLUCIONANDO O PROBLEMA DE NOMES COM ESPAÇO ***************************
-    let name = data[tableIndex][thKeys[0]].split(' ')
-    if( name.length > 1) {
-    name = name.join("-")
+    let name = data[tableIndex][thKeys[0]].split(" ");
+    if (name.length > 1) {
+      name = name.join("-");
     }
     // FIM ********************************************************************
     newRow.classList.add(name);
@@ -110,7 +110,7 @@ function mainConstruction(data) {
     let todayDeaths = data[tableIndex][thKeys[4]];
     let comparsionCase = (todayCases / totalCase) * 100;
     let comparsionDeaths = (todayDeaths / totalDeaths) * 100;
-    
+
     for (i = 0; i < 12; i += 1) {
       let newData = document.createElement("td");
       newRow.appendChild(newData);
@@ -118,15 +118,15 @@ function mainConstruction(data) {
         newData.innerHTML = data[tableIndex][thKeys[i]].toLocaleString("pt-BR");
         newData.className = "text-center";
         newData.classList.add(posicao);
-        newData.classList.add('data'+i)
+        newData.classList.add("data" + i);
       }
-      if (newData.innerHTML == '') {
-          newData.innerHTML = 0;
-          newData.className = "text-center";
-          newData.classList.add(posicao)
-          newData.classList.add('data'+i)
-        }
-      
+      if (newData.innerHTML == "") {
+        newData.innerHTML = 0;
+        newData.className = "text-center";
+        newData.classList.add(posicao);
+        newData.classList.add("data" + i);
+      }
+
       if (thKeys[i] === "todayCases") {
         if (data[tableIndex][thKeys[i]] != 0) {
           newData.innerHTML = `${data[tableIndex][thKeys[i]].toLocaleString(
@@ -150,30 +150,32 @@ function mainConstruction(data) {
     posicao += 1;
   }
 
-  let selecter = 0
-function randomColor() {
-  const colorArray = ['rgb(92, 236, 108)',
-  "rgb(210, 33, 41)",
-  "rgb(40, 163, 73)",
-  "rgb(249, 239, 30)",
-  "rgb(35, 61, 148)",
-  "rgb(246, 127, 33)",
-  "rgb(255, 255, 255)",
-  "rgb(245, 36, 156)",
-  'rgb(151, 145, 141)',
-  'rgb(89, 160, 198)',
-  'rgb(143, 25, 179)',
-  'rgb(87, 123, 97)',
-  'rgb(92, 57, 35)',
-  'rgb(118, 119, 30)',
-  'rgb(141, 18, 39)',
-  'rgb(35, 223, 156)',
-  'rgb(35, 168, 187)', ]
-  let newColor = colorArray[selecter]
-  selecter += 1
-  if(selecter === 7) selecter = 0
-  return newColor;
-}
+  let selecter = 0;
+  function randomColor() {
+    const colorArray = [
+      "rgb(92, 236, 108)",
+      "rgb(210, 33, 41)",
+      "rgb(40, 163, 73)",
+      "rgb(249, 239, 30)",
+      "rgb(35, 61, 148)",
+      "rgb(246, 127, 33)",
+      "rgb(255, 255, 255)",
+      "rgb(245, 36, 156)",
+      "rgb(151, 145, 141)",
+      "rgb(89, 160, 198)",
+      "rgb(143, 25, 179)",
+      "rgb(87, 123, 97)",
+      "rgb(92, 57, 35)",
+      "rgb(118, 119, 30)",
+      "rgb(141, 18, 39)",
+      "rgb(35, 223, 156)",
+      "rgb(35, 168, 187)",
+    ];
+    let newColor = colorArray[selecter];
+    selecter += 1;
+    if (selecter === 7) selecter = 0;
+    return newColor;
+  }
 
   tableConstructor(data, "World");
   tableConstructor(data, "USA");
@@ -220,4 +222,3 @@ deleteButton.addEventListener("click", function () {
 });
 
 let numberCorrection = document.getElementsByClassName("numero");
-
