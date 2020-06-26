@@ -195,7 +195,7 @@ var options1 = {
     colors: ["#ccc"],
   },
   title: {
-    text: "Percentage of Actives, Recovereds and Deaths",
+    text: "percentage of actives, recovereds and deaths",
     align: "center",
     style: {
       color: "#fff",
@@ -253,7 +253,7 @@ var options2 = {
   },
   stroke: barStroke,
   xaxis: {
-    categories: ["Countries"],
+    categories: ["countries"],
   },
   yaxis: {
     title: {
@@ -272,10 +272,10 @@ var options2 = {
     },
   },
   title: {
-    text: "Cases/Million",
+    text: "cases/million",
     align: "center",
     style: {
-      color: "#17A2B8",
+      color: "#fff",
     },
   },
 };
@@ -292,7 +292,7 @@ var options3 = {
   },
   stroke: barStroke,
   xaxis: {
-    categories: ["Countries"],
+    categories: ["countries"],
   },
   yaxis: {
     title: {
@@ -311,10 +311,10 @@ var options3 = {
     },
   },
   title: {
-    text: "Deaths/Million",
+    text: "deaths/million",
     align: "center",
     style: {
-      color: "#DC3545",
+      color: "#fff",
     },
   },
 };
@@ -332,7 +332,7 @@ var options4 = {
   },
   stroke: barStroke,
   xaxis: {
-    categories: ["Countries"],
+    categories: ["countries"],
   },
   yaxis: {
     title: {
@@ -351,10 +351,10 @@ var options4 = {
     },
   },
   title: {
-    text: "Tests/Million",
+    text: "tests/million",
     align: "center",
     style: {
-      color: "#0072D4",
+      color: "#fff",
     },
   },
 };

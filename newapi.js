@@ -209,6 +209,12 @@ const lineChart = {
   type: "line",
   height: 350,
   foreColor: "#fff",
+  zoom: {
+    enabled: false,
+  },
+  toolbar: {
+    show: false,
+  }
 };
 const colors = [
   "rgb(210, 33, 41)",
@@ -247,7 +253,7 @@ const lineChartTooltipCases = {
 const lineChartTooltipDeaths = {
   y: {
     formatter: function (val) {
-      return val + " cases";
+      return val + " deaths";
     },
   },
 };
