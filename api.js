@@ -4,49 +4,30 @@ const option = {
   cache: "default",
 };
 
-function callFetch(country) {
+function callFetch() {
   fetch(`https://coronavirus-19-api.herokuapp.com/countries`, option).then(
     (response) => {
-      response.json().then((data) => apiConstruction(data, country));
+      response.json().then((data) => apiConstruction(data));
     }
   );
 }
 
-async function initiate() {
-  callFetch("World");
-  await callFetch("Brazil");
-  await callFetch("USA");
-  await callFetch("France");
-  await callFetch("Italy");
-}
-
-initiate();
-
-/* 
-callFetch("World");
-setTimeout(function () {
-  callFetch("Brazil");
-}, 1000);
-setTimeout(function () {
-  callFetch("USA");
-}, 2000);
-setTimeout(function () {
-  callFetch("Spain");
-}, 3000);
-setTimeout(function () {
-  callFetch("France");
-}, 4000);
-setTimeout(function () {
-  callFetch("Italy");
-}, 5000); */
+callFetch();
 
 //ELEMENTO QUE RECEBE AVISOS
 const headerElement = document.getElementsByTagName("header")[0];
-
+let chartCountries1 = [
+  "World",
+  "Brazil",
+  "USA",
+  "France",
+  "Italy",
+];
 let createdCountries = [];
 let noPercentageCountries = [];
 let selecter = 0;
-function apiConstruction(data, country) {
+
+function apiConstruction(data) {
   const actives = options1.series[0].data;
   const recovered = options1.series[1].data;
   const deaths = options1.series[2].data;
@@ -55,7 +36,9 @@ function apiConstruction(data, country) {
   const newObjDeathsPerMillion = options3.series;
   const newObjTestPerMillion = options4.series;
 
-  const arrSearch = data.filter((arr) => arr.country === country)[0];
+  const country = chartCountries1.forEach( element => {
+    console.log(element)
+  const arrSearch = data.filter((arr) => arr.country === element)[0];
   if (createdCountries.includes(arrSearch.country) === true) {
     return;
   }
@@ -104,6 +87,7 @@ function apiConstruction(data, country) {
   deaths.push(arrSearch.deaths);
 
   chart.update();
+ })
 }
 
 // bar chart defaults

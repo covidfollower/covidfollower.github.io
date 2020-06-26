@@ -38,6 +38,7 @@ function newCallFetch() {
     
     //function that fixes initial null data
     const fixer = data["OWID_WRL"].length;
+    
     const chartInitialFixer = (arr) => {
       if (arr.length < fixer) {
       arr.unshift(0);
