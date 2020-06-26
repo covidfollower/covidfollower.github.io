@@ -50,21 +50,32 @@ function newCallFetch() {
   //GETTING RID OF COUNTRIES INITIALS OF JSON
   const arr = Object.values(data);
 
+  const countriesAbbreviations = {
+    'USA' : 'United States',
+    'UK' : 'United Kingdom',
+    'CAR' : 'Central African Republic',
+    'DRC' : 'Democratic Republic of Congo',
+    'Cabo Verde' : 'Cape Verde',
+    'Curaçao' : 'Curacao',
+    'Czechia' : 'Czech Republic',
+    'Eswatini' : 'Swaziland',
+    'Ivory Coast' :"Cote d'Ivoire",
+    'North Macedonia' : 'Macedonia',
+    'S. Korea' : 'South Korea',
+    'Sint Maarten' : 'Sint Maarten (Dutch part)',
+    'St. Vincent Grenadines' : 'Saint Vincent and the Grenadines',
+    'Timor-Leste' : 'Timor',
+    'Turks and Caicos' : 'Turks and Caicos Islands',
+    'UAE' : 'United Arab Emirates',
+    'Vatican City': 'Vatican'
+  }
 
   //
   chartCountries.forEach((element) => {
-    if (element === "USA") {
-      element = "United States";
+    if (Object.keys(countriesAbbreviations).includes(element) === true ) {
+     element = countriesAbbreviations[element]; 
     }
-    if (element === "UK") {
-      element = "United Kingdom";
-    }
-    if (element === "CAR") {
-      element = "Central African Republic";
-    }
-    if (element === "DRC") {
-      element = "Democratic Republic of Congo";
-    }
+    
     
 
     countryToBeCreated = element;
