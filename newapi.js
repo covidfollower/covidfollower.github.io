@@ -50,6 +50,7 @@ function newCallFetch() {
   //GETTING RID OF COUNTRIES INITIALS OF JSON
   const arr = Object.values(data);
 
+
   //
   chartCountries.forEach((element) => {
     if (element === "USA") {
