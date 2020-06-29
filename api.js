@@ -360,6 +360,12 @@ function removingFromBarGraph() {
     (selected) => selected.classList.contains("bg-danger") === true
   );
   countryToBeRemoved = filtered[0].classList.item(1);
+  if( countryToBeRemoved.includes('-') === true) {
+    for (let i = 0; i<countryToBeRemoved.length; i += 1) {
+    countryToBeRemoved = countryToBeRemoved.replace('-', ' ')
+    }
+  }
+  
   let indexToRemove = createdCountries.indexOf(countryToBeRemoved);
   if (indexToRemove === -1) return;
   createdCountries.splice(indexToRemove, 1);
