@@ -21,9 +21,7 @@ function newCallFetch() {
     "Brazil",
     "USA",
     "Russia",
-    "India",
     "Italy",
-    "Mexico",
     "France",
   ];
   
@@ -197,17 +195,18 @@ function removingFromGraph() {
     (selected) => selected.classList.contains("bg-danger") === true
   );
   countryToBeRemoved = filtered[0].classList.item(1);
-  let toRemoveDatasetIndex;
 
-  if (countryToBeRemoved === "USA") {
-    countryToBeRemoved = "United States";
+  if( countryToBeRemoved.includes('-') === true) {
+    for (let i = 0; i<countryToBeRemoved.length; i += 1) {
+    countryToBeRemoved = countryToBeRemoved.replace('-', ' ')
+    }
   }
-  if (countryToBeRemoved === "UK") {
-    countryToBeRemoved = "United Kingdom";
-  }
+ 
   
   let indexToRemove = chartCountries.indexOf(countryToBeRemoved);
-
+  console.log(countryToBeRemoved)
+  console.log(chartCountries)
+  console.log(indexToRemove)
   if (indexToRemove === -1) return;
   chartCountries.splice(indexToRemove, 1)
   newObjTotalCases.splice(indexToRemove, 1)

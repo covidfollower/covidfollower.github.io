@@ -32,7 +32,6 @@ const tableHead = document.getElementById("tbHead");
 
 function mainConstruction(data) {
   /* CONSTRUÇÃO DO OPTIONS DO SELECT */
-  console.log(data)
   function optionConstruction(data) {
     let arr = [];
     for (let i = 0; i < data.length; i += 1) {
@@ -154,12 +153,10 @@ function mainConstruction(data) {
 
 
   tableConstructor(data, "World");
-  tableConstructor(data, "USA");
   tableConstructor(data, "Brazil");
+  tableConstructor(data, "USA");
   tableConstructor(data, "Russia");
-  tableConstructor(data, "India");
   tableConstructor(data, "Italy");
-  tableConstructor(data, "Mexico");
   tableConstructor(data, "France");
   optionConstruction(data);
 }

@@ -21,9 +21,7 @@ let chartCountries1 = [
   "Brazil",
   "USA",
   "Russia",
-  "India",
   "Italy",
-  "Mexico",
   "France",
 ];
 let createdCountries = [];
