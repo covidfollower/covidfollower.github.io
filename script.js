@@ -30,12 +30,29 @@ if (selectCountry.className === "default") {
 }
 const tableHead = document.getElementById("tbHead");
 
+const optionDataExcludeds = [
+  'Caribbean',
+  'French Guiana',
+  'Guadeloupe',
+  'MS Zaandam',
+  'Macao',
+  'Martinique',
+  'Mayotte',
+  'Reuion',
+  'Saint Martin',
+  'Saint Pierre Miquelon',
+  'St. Barths',
+]
+
 function mainConstruction(data) {
   /* CONSTRUÇÃO DO OPTIONS DO SELECT */
   function optionConstruction(data) {
     let arr = [];
     for (let i = 0; i < data.length; i += 1) {
-      arr.push(data[i].country);
+      console.log(data[i].country)
+      if(optionDataExcludeds.includes(data[i].country) === false) {
+        arr.push(data[i].country);
+      } 
     }
     arr.sort();
     for (let i = 0; i < arr.length; i += 1) {
