@@ -8,7 +8,7 @@ const newoption = {
 //function that capsules fetch
 function newCallFetch() {
   fetch(
-    "https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-data.json",
+    "https://covid.ourworldindata.org/data/owid-covid-data.json",
     newoption
     ).then((response) => {
       response.json().then((data) => testeConstruction(data));
@@ -36,9 +36,8 @@ function newCallFetch() {
   
   //main functions that constroys line charts
   function testeConstruction(data) {
-    
     //function that fixes initial null data
-    const fixer = data["OWID_WRL"].length;
+    const fixer = data["OWID_WRL"].data.length;
 
     const chartInitialFixer = (arr) => {
       if (arr.length < fixer) {
@@ -57,7 +56,7 @@ function newCallFetch() {
     'CAR' : 'Central African Republic',
     'DRC' : 'Democratic Republic of Congo',
     'Cabo Verde' : 'Cape Verde',
-    'Curaçao' : 'Curacao',
+    'Curaรงao' : 'Curacao',
     'Czechia' : 'Czech Republic',
     'Eswatini' : 'Swaziland',
     'Ivory Coast' :"Cote d'Ivoire",
@@ -81,8 +80,8 @@ function newCallFetch() {
 
     countryToBeCreated = element;
     let indexArrayFiltered = arr.filter(
-      (id) => id[0].location === countryToBeCreated
-    );
+      (id) => id.location === countryToBeCreated
+      );
     if (alreadyCreated.includes(countryToBeCreated) === false) {
       createTotalCasesData(indexArrayFiltered);
       createCasesPerDayData(indexArrayFiltered);
@@ -93,11 +92,11 @@ function newCallFetch() {
   });
   //total cases chart creation
   function createTotalCasesData(data) {
-    newChartNameTotalCases = data[0][0].location;
+    newChartNameTotalCases = data[0].location;
     newChartDataTotalCases = [];
 
-    for (let index = 0; index < data[0].length; index += 1) {
-      newChartDataTotalCases.push(data[0][index].total_cases);
+    for (let index = 0; index < data[0].data.length; index += 1) {
+      newChartDataTotalCases.push(data[0].data[index].total_cases);
     }
     chartInitialFixer(newChartDataTotalCases);
     newObjTotalCases.push({
@@ -110,12 +109,12 @@ function newCallFetch() {
 
   //cases per day chart creation
   function createCasesPerDayData(data) {
-    newChartNameCasesPerDay = data[0][0].location;
+    newChartNameCasesPerDay = data[0].location;
     newChartDataCasesPerDay = [];
 
-    for (let index = 0; index < data[0].length; index += 1) {
-      if (data[0][index].new_cases >= 0) {
-        newChartDataCasesPerDay.push(data[0][index].new_cases);
+    for (let index = 0; index < data[0].data.length; index += 1) {
+      if (data[0].data[index].new_cases >= 0) {
+        newChartDataCasesPerDay.push(data[0].data[index].new_cases);
       } else {
         newChartDataCasesPerDay.push(0);
       }
@@ -132,11 +131,11 @@ function newCallFetch() {
 
   //total deaths chart creation
   function createTotalDeathsData(data) {
-    newChartNameTotalDeaths = data[0][0].location;
+    newChartNameTotalDeaths = data[0].location;
     newChartDataTotalDeaths = [];
 
-    for (let index = 0; index < data[0].length; index += 1) {
-      newChartDataTotalDeaths.push(data[0][index].total_deaths);
+    for (let index = 0; index < data[0].data.length; index += 1) {
+      newChartDataTotalDeaths.push(data[0].data[index].total_deaths);
     }
 
     chartInitialFixer(newChartDataTotalDeaths);
@@ -151,12 +150,12 @@ function newCallFetch() {
 
   //deaths per day chart creation
   function createDeathsPerDayData(data) {
-    newChartNameDeathsPerDay = data[0][0].location;
+    newChartNameDeathsPerDay = data[0].location;
     newChartDataDeathsPerDay = [];
 
-    for (let index = 0; index < data[0].length; index += 1) {
-      if (data[0][index].new_deaths >= 0) {
-        newChartDataDeathsPerDay.push(data[0][index].new_deaths);
+    for (let index = 0; index < data[0].data.length; index += 1) {
+      if (data[0].data[index].new_deaths >= 0) {
+        newChartDataDeathsPerDay.push(data[0].data[index].new_deaths);
       } else {
         newChartDataDeathsPerDay.push(0);
       }
