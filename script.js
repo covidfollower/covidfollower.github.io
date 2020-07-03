@@ -31,14 +31,14 @@ if (selectCountry.className === "default") {
 const tableHead = document.getElementById("tbHead");
 
 const optionDataExcludeds = [
-  'Caribbean',
+  'Caribbean Netherlands',
   'French Guiana',
   'Guadeloupe',
   'MS Zaandam',
   'Macao',
   'Martinique',
   'Mayotte',
-  'Reuion',
+  'Réunion',
   'Saint Martin',
   'Saint Pierre Miquelon',
   'St. Barths',
@@ -49,7 +49,6 @@ function mainConstruction(data) {
   function optionConstruction(data) {
     let arr = [];
     for (let i = 0; i < data.length; i += 1) {
-      console.log(data[i].country)
       if(optionDataExcludeds.includes(data[i].country) === false) {
         arr.push(data[i].country);
       } 

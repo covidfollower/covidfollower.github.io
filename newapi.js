@@ -8,7 +8,7 @@ const newoption = {
 //function that capsules fetch
 function newCallFetch() {
   fetch(
-    "https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-data.json",
+    "https://covid.ourworldindata.org/data/owid-covid-data.json",
     newoption
     ).then((response) => {
       response.json().then((data) => testeConstruction(data));
@@ -36,8 +36,6 @@ function newCallFetch() {
   
   //main functions that constroys line charts
   function testeConstruction(data) {
-    
-    console.log(data)
     //function that fixes initial null data
     const fixer = data["OWID_WRL"].data.length;
 
@@ -94,7 +92,6 @@ function newCallFetch() {
   });
   //total cases chart creation
   function createTotalCasesData(data) {
-    console.log(data[0].data)
     newChartNameTotalCases = data[0].location;
     newChartDataTotalCases = [];
 
