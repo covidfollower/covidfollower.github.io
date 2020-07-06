@@ -379,6 +379,7 @@ function removingFromBarGraph() {
   options2.series.splice(indexToRemove, 1);
   options3.series.splice(indexToRemove, 1);
   options4.series.splice(indexToRemove, 1);
+  chartCountries1.splice(indexToRemove, 1)
 
   chart.update();
   chart2.update();
