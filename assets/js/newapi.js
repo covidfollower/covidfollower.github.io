@@ -203,9 +203,6 @@ function removingFromGraph() {
  
   
   let indexToRemove = chartCountries.indexOf(countryToBeRemoved);
-  console.log(countryToBeRemoved)
-  console.log(chartCountries)
-  console.log(indexToRemove)
   if (indexToRemove === -1) return;
   chartCountries.splice(indexToRemove, 1)
   newObjTotalCases.splice(indexToRemove, 1)

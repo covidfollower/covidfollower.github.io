@@ -387,3 +387,5 @@ function removingFromBarGraph() {
   chart4.update();
   countryToBeRemoved = "";
 }
+
+
