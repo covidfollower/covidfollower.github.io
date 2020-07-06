@@ -4,9 +4,7 @@ const spanDeaths = document.getElementsByClassName("span-deaths");
 const spanTests = document.getElementsByClassName("span-tests");
 const spanRecovered = document.getElementsByClassName("span-recovered");
 const spanCasesMillion = document.getElementsByClassName("span-cases-million");
-const spanDeathsMillion = document.getElementsByClassName(
-  "span-deaths-million"
-);
+const spanDeathsMillion = document.getElementsByClassName("span-deaths-million");
 const spanTestsMillion = document.getElementsByClassName("span-tests-million");
 const spanTodayCases = document.getElementsByClassName("span-today-cases");
 const spanTodayDeaths = document.getElementsByClassName("span-today-deaths");
