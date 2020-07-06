@@ -56,7 +56,7 @@ function newCallFetch() {
     'CAR' : 'Central African Republic',
     'DRC' : 'Democratic Republic of Congo',
     'Cabo Verde' : 'Cape Verde',
-    'Curaçao' : 'Curacao',
+    'Curaรงao' : 'Curacao',
     'Czechia' : 'Czech Republic',
     'Eswatini' : 'Swaziland',
     'Ivory Coast' :"Cote d'Ivoire",
