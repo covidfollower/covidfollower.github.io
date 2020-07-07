@@ -308,7 +308,7 @@ let options6 = {
   legend: lineChartLegend,
   tooltip: lineChartTooltipCases,
   title: {
-    text: "total acummulated cases",
+    text: "total accumulated cases",
     align: "center",
   },
 };
