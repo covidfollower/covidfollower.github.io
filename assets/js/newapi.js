@@ -263,6 +263,9 @@ const lineChartLegend = {
   labels: {
     colors: "#fff",
   },
+  onItemClick: {
+    toggleDataSeries:false
+  },
 };
 const lineChartTooltipCases = {
   y: {
@@ -306,6 +309,7 @@ let options6 = {
     },
   },
   legend: lineChartLegend,
+   
   tooltip: lineChartTooltipCases,
   title: {
     text: "total accumulated cases",
