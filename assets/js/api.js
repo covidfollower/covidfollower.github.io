@@ -185,7 +185,7 @@ let options1 = {
     colors: ["#ccc"],
   },
   title: {
-    text: "percentage of actives, recovereds and deaths",
+    text: "percentage of active, recovered and deaths",
     align: "center",
     style: {
       color: "#fff",
