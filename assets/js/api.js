@@ -137,6 +137,9 @@ const barLegends = {
   labels: {
     colors: "#fff",
   },
+  onItemClick: {
+    toggleDataSeries:false
+  },
 };
 
 const barStroke = {
@@ -219,6 +222,9 @@ let options1 = {
     },
     markers: {
       fillColors: ["#1FA2B8", "#28A745", "#DC3545"],
+    },
+    onItemClick: {
+      toggleDataSeries:false
     },
   },
 };
