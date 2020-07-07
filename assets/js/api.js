@@ -148,11 +148,11 @@ const barStroke = {
 let options1 = {
   series: [
     {
-      name: "Actives",
+      name: "Active",
       data: [],
     },
     {
-      name: "Recovereds",
+      name: "Recovered",
       data: [],
     },
     {
