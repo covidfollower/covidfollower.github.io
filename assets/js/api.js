@@ -231,6 +231,7 @@ optSelected.addEventListener("change", function () {
   chartCountries1.push(optSelected.value);
   callFetch();
 });
+
 const delCountry = document.getElementsByClassName("remove")[0];
 delCountry.addEventListener("click", removingFromBarGraph);
 
@@ -376,6 +377,7 @@ function removingFromBarGraph() {
     options1.series[2].data.splice(indexToRemove, 1);
     options1.xaxis.categories.splice(indexToRemove, 1);
   }
+  console.log(chartCountries1)
   options2.series.splice(indexToRemove, 1);
   options3.series.splice(indexToRemove, 1);
   options4.series.splice(indexToRemove, 1);
@@ -387,5 +389,3 @@ function removingFromBarGraph() {
   chart4.update();
   countryToBeRemoved = "";
 }
-
-

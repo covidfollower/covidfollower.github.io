@@ -38,6 +38,7 @@ function newCallFetch() {
   function testeConstruction(data) {
     //function that fixes initial null data
     const fixer = data["OWID_WRL"].data.length;
+    sizer.push(fixer)
 
     const chartInitialFixer = (arr) => {
       if (arr.length < fixer) {
@@ -179,8 +180,10 @@ countryChange.addEventListener("change", function () {
 });
 
 //X axis construction
+let sizer = []
+console.log(sizer)
 let label2 = [];
-for (let index = 0; index < 200; index += 1) {
+for (let index = 0; index < (sizer[0] + 10); index += 1) {
   label2.push(index);
 }
 

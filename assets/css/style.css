@@ -12,10 +12,25 @@ body {
   background-color: #303133;
   margin-right: 15px;
   border-bottom: 2px solid #dc3d45;
+  color: white;
+}
+
+.btn-custom1 {
+  background-color: #303133;
+  margin-right: 15px;
+  border-bottom: 2px solid green;
+  color: white;
+  white-space: nowrap;
 }
 
 .btn-custom:hover {
-  background-color: #2b2c2e;
+  background-color: #dc3d45;
+  color: white;
+}
+
+.btn-custom1:hover {
+  background-color: green;
+  color: white;
 }
 
 .btn-custom i {

@@ -174,6 +174,7 @@ function mainConstruction(data) {
   tableConstructor(data, "France");
   optionConstruction(data);
 }
+
 const deletedRow = document.getElementsByTagName("tbody")[0];
 let deletePosition = 1000;
 deletedRow.addEventListener("click", selectToDelete);
