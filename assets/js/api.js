@@ -137,6 +137,9 @@ const barLegends = {
   labels: {
     colors: "#fff",
   },
+  onItemClick: {
+    toggleDataSeries:false
+  },
 };
 
 const barStroke = {
@@ -148,11 +151,11 @@ const barStroke = {
 let options1 = {
   series: [
     {
-      name: "Actives",
+      name: "Active",
       data: [],
     },
     {
-      name: "Recovereds",
+      name: "Recovered",
       data: [],
     },
     {
@@ -185,7 +188,7 @@ let options1 = {
     colors: ["#ccc"],
   },
   title: {
-    text: "percentage of actives, recovereds and deaths",
+    text: "percentage of active, recovered and deaths",
     align: "center",
     style: {
       color: "#fff",
@@ -219,6 +222,9 @@ let options1 = {
     },
     markers: {
       fillColors: ["#1FA2B8", "#28A745", "#DC3545"],
+    },
+    onItemClick: {
+      toggleDataSeries:false
     },
   },
 };
