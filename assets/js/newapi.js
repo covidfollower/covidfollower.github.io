@@ -179,7 +179,7 @@ countryChange.addEventListener("change", function () {
   newCallFetch();
 });
 
-//X axis construction
+//X axis construction (fixer construction)
 let sizer = []
 console.log(sizer)
 let label2 = [];
